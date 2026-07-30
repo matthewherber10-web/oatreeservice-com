@@ -459,6 +459,27 @@ a.card:hover::before{transform:translateX(0)}
 .result dt:first-child{margin-top:0}
 .result dd{margin:.3em 0 0;color:var(--ink-2);font-size:.98rem}
 
+/* ---------- permit checker, presented as a tool rather than a form ---------- */
+.toolcard{border-radius:var(--r) var(--r) 0 0;overflow:hidden;box-shadow:var(--shadow-lg)}
+.toolcard-hd{background:var(--green);color:#dfe3e1;padding:26px 28px 24px}
+.toolcard-hd .k{font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 .8rem}
+.toolcard-hd .t{font:600 clamp(1.35rem,2.8vw,1.85rem)/1.15 var(--serif);color:#fff;
+  letter-spacing:-.015em;margin:0 0 .5rem}
+.toolcard-hd .s{margin:0;font-size:.98rem;line-height:1.5;color:#b9c2bd;max-width:56ch}
+.toolcard-body{border-radius:0 0 var(--r) var(--r);margin-bottom:2.4rem}
+.toolcard-body .form{border-radius:0;box-shadow:none;border-top:0;
+  border-color:var(--line)}
+.toolcard-body .result{border-radius:0 0 var(--r) var(--r);margin-top:0;border-top:0}
+
+/* the sticky header was covering the verdict when the result scrolled in */
+#pc-out,#pc,.toolcard{scroll-margin-top:92px}
+
+/* numbered steps read better than plain labels in a tool */
+.checker .field label{font-size:.98rem}
+.checker .field:last-of-type{margin-bottom:22px}
+.checker button[type=submit]{margin-top:4px}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TreeService","@id":"https://oatreeservice.com/#business","name":"Ozark of Austin Tree Service","url":"https://oatreeservice.com","telephone":"479-422-9105","email":"ozarkofaustin@gmail.com","image":"https://oatreeservice.com/img/bramel-climbing-live-oak.jpg","priceRange":"$$","founder":{"@type":"Person","name":"Bramel Harrison"},"foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Kyle","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"geoRadius":"80450"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"12"},"sameAs":["https://www.facebook.com/ozarkofaustin","https://instagram.com/oatreeservice"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"You're based in Kyle. Is Staples a long trip for you?","acceptedAnswer":{"@type":"Answer","text":"No &mdash; it's about twenty-two minutes, which makes it one of the closer places I work outside Hays County. Most of Guadalupe County is twice that."}},{"@type":"Question","name":"What do river pecans need that yard trees don't?","acceptedAnswer":{"@type":"Answer","text":"Mostly end-weight management. Deep soil and reliable water grow very large limbs, and large limbs on long levers are what fail. Deadwood and reduction, not thinning."}},{"@type":"Question","name":"Do cypress trees need pruning?","acceptedAnswer":{"@type":"Answer","text":"Far less than people give them. A bald cypress builds a strong natural form on its own and the interior thinning that gets done to oaks is wasted on it, or worse. Deadwood and genuine clearance, and otherwise leave it be."}},{"@type":"Question","name":"Can flooding hurt a tree that survived the water?","acceptedAnswer":{"@type":"Answer","text":"The water itself is usually less of a problem than what it leaves behind. Silt deposited around the base buries the root flare and holds moisture against bark that isn't built for it, and saturated soil starves roots of oxygen while it stays wet. Trees often look fine for a season afterwards and then decline, which makes the connection easy to miss."}}]}</script>

@@ -459,6 +459,27 @@ a.card:hover::before{transform:translateX(0)}
 .result dt:first-child{margin-top:0}
 .result dd{margin:.3em 0 0;color:var(--ink-2);font-size:.98rem}
 
+/* ---------- permit checker, presented as a tool rather than a form ---------- */
+.toolcard{border-radius:var(--r) var(--r) 0 0;overflow:hidden;box-shadow:var(--shadow-lg)}
+.toolcard-hd{background:var(--green);color:#dfe3e1;padding:26px 28px 24px}
+.toolcard-hd .k{font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 .8rem}
+.toolcard-hd .t{font:600 clamp(1.35rem,2.8vw,1.85rem)/1.15 var(--serif);color:#fff;
+  letter-spacing:-.015em;margin:0 0 .5rem}
+.toolcard-hd .s{margin:0;font-size:.98rem;line-height:1.5;color:#b9c2bd;max-width:56ch}
+.toolcard-body{border-radius:0 0 var(--r) var(--r);margin-bottom:2.4rem}
+.toolcard-body .form{border-radius:0;box-shadow:none;border-top:0;
+  border-color:var(--line)}
+.toolcard-body .result{border-radius:0 0 var(--r) var(--r);margin-top:0;border-top:0}
+
+/* the sticky header was covering the verdict when the result scrolled in */
+#pc-out,#pc,.toolcard{scroll-margin-top:92px}
+
+/* numbered steps read better than plain labels in a tool */
+.checker .field label{font-size:.98rem}
+.checker .field:last-of-type{margin-bottom:22px}
+.checker button[type=submit]{margin-top:4px}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TreeService","@id":"https://oatreeservice.com/#business","name":"Ozark of Austin Tree Service","url":"https://oatreeservice.com","telephone":"479-422-9105","email":"ozarkofaustin@gmail.com","image":"https://oatreeservice.com/img/bramel-climbing-live-oak.jpg","priceRange":"$$","founder":{"@type":"Person","name":"Bramel Harrison"},"foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Kyle","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"geoRadius":"80450"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"12"},"sameAs":["https://www.facebook.com/ozarkofaustin","https://instagram.com/oatreeservice"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will watering help my tree survive a drought here?","acceptedAnswer":{"@type":"Answer","text":"Consistent deep watering does more for a Pflugerville tree than any amount of fertilizer. The goal is to keep the clay from going through violent wet-dry swings, because it's the movement that tears roots."}},{"@type":"Question","name":"My Bradford pear split. Can it be saved?","acceptedAnswer":{"@type":"Answer","text":"Rarely, once it's split at the union. The whole species has the same flaw &mdash; limbs crowded at one height with tight included angles &mdash; and once it opens up, the structure is gone. Better to replace it with something that will still be standing in forty years."}},{"@type":"Question","name":"Is my tree thinning because of the clay or because it's sick?","acceptedAnswer":{"@type":"Answer","text":"In this soil, movement and watering are the first two things worth ruling out, and they're free to check. Look at whether the thinning is uniform across the canopy, which points at roots, or whether it's on one limb or one side, which points at something in that limb. Uniform thinning across a whole mature canopy on Pflugerville clay is usually a root story."}},{"@type":"Question","name":"One side of my oak is dying and the rest looks fine. Why?","acceptedAnswer":{"@type":"Answer","text":"That pattern often points to a root problem on that side rather than a disease &mdash; a girdling root strangling part of the trunk, a severed root from trenching, or compacted soil. Clear the soil back from the root flare and look for a root crossing and pressing against the trunk. It's a common finding on trees planted too deep."}},{"@type":"Question","name":"Should I remove a girdling root myself?","acceptedAnswer":{"@type":"Answer","text":"Small ones, carefully, yes. A big one that's already flattened the trunk is a judgement call &mdash; cutting it removes a large share of the tree's root system at once, and sometimes staging it over two seasons is safer than doing it all at once."}}]}</script>

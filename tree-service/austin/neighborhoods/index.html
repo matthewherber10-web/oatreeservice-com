@@ -459,6 +459,27 @@ a.card:hover::before{transform:translateX(0)}
 .result dt:first-child{margin-top:0}
 .result dd{margin:.3em 0 0;color:var(--ink-2);font-size:.98rem}
 
+/* ---------- permit checker, presented as a tool rather than a form ---------- */
+.toolcard{border-radius:var(--r) var(--r) 0 0;overflow:hidden;box-shadow:var(--shadow-lg)}
+.toolcard-hd{background:var(--green);color:#dfe3e1;padding:26px 28px 24px}
+.toolcard-hd .k{font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 .8rem}
+.toolcard-hd .t{font:600 clamp(1.35rem,2.8vw,1.85rem)/1.15 var(--serif);color:#fff;
+  letter-spacing:-.015em;margin:0 0 .5rem}
+.toolcard-hd .s{margin:0;font-size:.98rem;line-height:1.5;color:#b9c2bd;max-width:56ch}
+.toolcard-body{border-radius:0 0 var(--r) var(--r);margin-bottom:2.4rem}
+.toolcard-body .form{border-radius:0;box-shadow:none;border-top:0;
+  border-color:var(--line)}
+.toolcard-body .result{border-radius:0 0 var(--r) var(--r);margin-top:0;border-top:0}
+
+/* the sticky header was covering the verdict when the result scrolled in */
+#pc-out,#pc,.toolcard{scroll-margin-top:92px}
+
+/* numbered steps read better than plain labels in a tool */
+.checker .field label{font-size:.98rem}
+.checker .field:last-of-type{margin-bottom:22px}
+.checker button[type=submit]{margin-top:4px}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TreeService","@id":"https://oatreeservice.com/#business","name":"Ozark of Austin Tree Service","url":"https://oatreeservice.com","telephone":"479-422-9105","email":"ozarkofaustin@gmail.com","image":"https://oatreeservice.com/img/bramel-climbing-live-oak.jpg","priceRange":"$$","founder":{"@type":"Person","name":"Bramel Harrison"},"foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Kyle","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"geoRadius":"80450"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"12"},"sameAs":["https://www.facebook.com/ozarkofaustin","https://instagram.com/oatreeservice"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is west Austin tree work different from east Austin?","acceptedAnswer":{"@type":"Answer","text":"The Balcones Escarpment runs through the middle of the city. West of it is thin soil over Edwards limestone, so root plates spread wide and shallow across rock and the dominant trees are live oak and Ashe juniper. East of it is deep Blackland Prairie clay that shrinks and swells with the weather, which shears fine roots and shows up as canopy thinning in pecans and cedar elms. Same species, different failure mode, different job."}},{"@type":"Question","name":"What size tree needs a permit in Austin?","acceptedAnswer":{"@type":"Answer","text":"Nineteen inches in diameter measured 4.5 feet above the ground, any species, on residential property. Under that, the city doesn't regulate the removal. At 24 inches, listed species including all oaks, pecan, American and cedar elm, bald cypress and Texas ash become Heritage trees and removal is prohibited except under section 25-8-641."}},{"@type":"Question","name":"Does Austin's tree ordinance apply in West Lake Hills or Rollingwood?","acceptedAnswer":{"@type":"Answer","text":"No. Both are separately incorporated cities with their own rules, even though they sit inside Austin's postal geography. Ask their city hall rather than assuming Austin's thresholds apply to you."}},{"@type":"Question","name":"Do you charge more to come into Austin?","acceptedAnswer":{"@type":"Answer","text":"The prices are the same ones on the rest of the site. Drive time is the honest variable: south Austin is close to me, far north Austin is an hour each way in traffic, and for a small job up there I'll tell you if you're better off with somebody local."}}]}</script>

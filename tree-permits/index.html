@@ -459,6 +459,27 @@ a.card:hover::before{transform:translateX(0)}
 .result dt:first-child{margin-top:0}
 .result dd{margin:.3em 0 0;color:var(--ink-2);font-size:.98rem}
 
+/* ---------- permit checker, presented as a tool rather than a form ---------- */
+.toolcard{border-radius:var(--r) var(--r) 0 0;overflow:hidden;box-shadow:var(--shadow-lg)}
+.toolcard-hd{background:var(--green);color:#dfe3e1;padding:26px 28px 24px}
+.toolcard-hd .k{font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 .8rem}
+.toolcard-hd .t{font:600 clamp(1.35rem,2.8vw,1.85rem)/1.15 var(--serif);color:#fff;
+  letter-spacing:-.015em;margin:0 0 .5rem}
+.toolcard-hd .s{margin:0;font-size:.98rem;line-height:1.5;color:#b9c2bd;max-width:56ch}
+.toolcard-body{border-radius:0 0 var(--r) var(--r);margin-bottom:2.4rem}
+.toolcard-body .form{border-radius:0;box-shadow:none;border-top:0;
+  border-color:var(--line)}
+.toolcard-body .result{border-radius:0 0 var(--r) var(--r);margin-top:0;border-top:0}
+
+/* the sticky header was covering the verdict when the result scrolled in */
+#pc-out,#pc,.toolcard{scroll-margin-top:92px}
+
+/* numbered steps read better than plain labels in a tool */
+.checker .field label{font-size:.98rem}
+.checker .field:last-of-type{margin-bottom:22px}
+.checker button[type=submit]{margin-top:4px}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TreeService","@id":"https://oatreeservice.com/#business","name":"Ozark of Austin Tree Service","url":"https://oatreeservice.com","telephone":"479-422-9105","email":"ozarkofaustin@gmail.com","image":"https://oatreeservice.com/img/bramel-climbing-live-oak.jpg","priceRange":"$$","founder":{"@type":"Person","name":"Bramel Harrison"},"foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Kyle","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"geoRadius":"80450"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"12"},"sameAs":["https://www.facebook.com/ozarkofaustin","https://instagram.com/oatreeservice"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need a permit to remove a tree in Texas?","acceptedAnswer":{"@type":"Answer","text":"There is no statewide requirement; it is set by your city. Austin requires a permit at 19 inches diameter and prohibits removal of listed Heritage species at 24 inches. Buda requires a City Council public hearing for Heritage Trees. Kyle requires Planning and Zoning approval for specimen trees of 25 caliper inches or more."}},{"@type":"Question","name":"What is a heritage tree in Austin?","acceptedAnswer":{"@type":"Answer","text":"A tree 24 inches or more in diameter at 4.5 feet above ground, of a listed species including all oaks, pecan, American and cedar elm, bald cypress, Texas ash, Texas madrone, bigtooth maple and Arizona or eastern black walnut. Removal is prohibited except under City Code 25-8-641."}},{"@type":"Question","name":"How do I measure tree diameter for a permit?","acceptedAnswer":{"@type":"Answer","text":"Measure trunk circumference at 4.5 feet above ground and divide by 3.14. If the trunk splits below 4.5 feet, measure below the split."}}]}</script>
@@ -485,7 +506,8 @@ a.card:hover::before{transform:translateX(0)}
 </div></section>
 
 <section class="tight"><div class="wrap reading">
-  <h2 style="margin:0 0 .35em">Check your tree in thirty seconds</h2><p class="lede" style="margin-bottom:1.7rem">Pick your city, measure the trunk, and I&rsquo;ll show you what the ordinance actually says &mdash; in its own words, with a link to the code.</p>
+  <div class="toolcard"><div class="toolcard-hd"><p class="k">Permit checker</p><p class="t">Check your tree in thirty seconds</p><p class="s">Pick your city, measure the trunk, and I&rsquo;ll show you exactly what the ordinance says &mdash; the size rules, what you owe in replanting, who signs off, and the penalty for skipping it.</p></div></div>
+<div class="toolcard toolcard-body">
 <form class="form checker" id="pc" novalidate>
   <div class="field">
     <label for="pc-city">1. Which city is the tree in?
@@ -537,6 +559,7 @@ a.card:hover::before{transform:translateX(0)}
 </form>
 
 <div id="pc-out" class="result" hidden aria-live="polite"></div>
+</div>
 
 <script>
 (function(){
