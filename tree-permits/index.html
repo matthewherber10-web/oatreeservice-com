@@ -424,6 +424,32 @@ a.card:hover::before{transform:translateX(0)}
 .draftbar code{background:rgba(0,0,0,.07);padding:1px 6px;border-radius:4px;
   font-size:.88em;font-family:var(--sans)}
 
+/* ---------- permit checker ---------- */
+.checker .measrow{display:flex;gap:10px}
+.checker .measrow input{flex:1 1 40%}
+.checker .measrow select{flex:1 1 60%}
+.result{margin-top:1.8rem;border-radius:var(--r);padding:26px 28px;
+  border:1px solid var(--line);border-left-width:6px;background:var(--white);
+  box-shadow:var(--shadow)}
+.result h3{margin:0 0 .5em;font-size:clamp(1.25rem,2.4vw,1.6rem)}
+.result p{margin:0 0 1em}
+.result .verdict-k{font:600 .74rem/1 var(--sans);letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:.9rem}
+.result ol{padding-left:1.3em;margin:0 0 1em}
+.result li{margin-bottom:.45em}
+.tone-stop{border-left-color:#b3261e;background:#fdf3f2}
+.tone-warn{border-left-color:var(--orange)}
+.tone-ok{border-left-color:#2f7d4f;background:#f2f8f3}
+.tone-ask{border-left-color:var(--amber);background:var(--amber-soft)}
+.result .warn-line{background:rgba(255,255,255,.75);border:1px solid var(--line);
+  border-radius:var(--r-sm);padding:13px 16px}
+.result .ord{margin-top:1.4rem;border-top:1px solid var(--line);padding-top:1.2rem}
+.result .ord h4{font:600 .74rem/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 .8rem}
+.result blockquote{margin:0 0 1em;padding-left:16px;border-left:3px solid var(--line);
+  font-family:var(--serif);font-size:1.04rem;line-height:1.5;color:var(--ink)}
+.result .src{font-size:.9rem;color:var(--ink-3);margin:0}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TreeService","@id":"https://oatreeservice.com/#business","name":"Ozark of Austin Tree Service","url":"https://oatreeservice.com","telephone":"479-422-9105","email":"ozarkofaustin@gmail.com","image":"https://oatreeservice.com/img/bramel-climbing-live-oak.jpg","priceRange":"$$","founder":{"@type":"Person","name":"Bramel Harrison"},"foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Kyle","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"geoRadius":"80450"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"12"},"sameAs":["https://www.facebook.com/ozarkofaustin","https://instagram.com/oatreeservice"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need a permit to remove a tree in Texas?","acceptedAnswer":{"@type":"Answer","text":"There is no statewide requirement; it is set by your city. Austin requires a permit at 19 inches diameter and prohibits removal of listed Heritage species at 24 inches. Buda requires a City Council public hearing for Heritage Trees. Kyle requires Planning and Zoning approval for specimen trees of 25 caliper inches or more."}},{"@type":"Question","name":"What is a heritage tree in Austin?","acceptedAnswer":{"@type":"Answer","text":"A tree 24 inches or more in diameter at 4.5 feet above ground, of a listed species including all oaks, pecan, American and cedar elm, bald cypress, Texas ash, Texas madrone, bigtooth maple and Arizona or eastern black walnut. Removal is prohibited except under City Code 25-8-641."}},{"@type":"Question","name":"How do I measure tree diameter for a permit?","acceptedAnswer":{"@type":"Answer","text":"Measure trunk circumference at 4.5 feet above ground and divide by 3.14. If the trunk splits below 4.5 feet, measure below the split."}}]}</script>
@@ -450,6 +476,202 @@ a.card:hover::before{transform:translateX(0)}
 </div></section>
 
 <section class="tight"><div class="wrap reading">
+  <h2 style="margin:0 0 .35em">Check your tree in thirty seconds</h2><p class="lede" style="margin-bottom:1.7rem">Pick your city, measure the trunk, and I&rsquo;ll show you what the ordinance actually says &mdash; in its own words, with a link to the code.</p>
+  <form class="form checker" id="pc" novalidate>
+    <div class="field">
+      <label for="pc-city">1. Which city is the tree in?
+        <span class="hint">Not your mailing address &mdash; the jurisdiction. If you're
+        outside city limits, pick the last option.</span></label>
+      <select id="pc-city">
+        <option value="">Choose a city…</option>
+        <option value="austin">Austin</option><option value="kyle">Kyle</option><option value="buda">Buda</option><option value="bastrop">Bastrop</option><option value="schertz">Schertz</option><option value="west-lake-hills">West Lake Hills</option><option value="dripping-springs">Dripping Springs</option><optgroup label="I have not verified these yet"><option value="unverified">Bear Creek</option><option value="unverified">Bee Cave</option><option value="unverified">Blanco</option><option value="unverified">Bulverde</option><option value="unverified">Canyon Lake</option><option value="unverified">Cedar Creek</option><option value="unverified">Cedar Park</option><option value="unverified">Cibolo</option><option value="unverified">Creedmoor</option><option value="unverified">Dale</option><option value="unverified">Del Valle</option><option value="unverified">Driftwood</option><option value="unverified">Elgin</option><option value="unverified">Garden Ridge</option><option value="unverified">Georgetown</option><option value="unverified">Hutto</option><option value="unverified">Johnson City</option><option value="unverified">Lakeway</option><option value="unverified">Leander</option><option value="unverified">Lockhart</option><option value="unverified">Luling</option><option value="unverified">Manchaca</option><option value="unverified">Manor</option><option value="unverified">Marion</option><option value="unverified">Martindale</option><option value="unverified">Maxwell</option><option value="unverified">Mountain City</option><option value="unverified">Mustang Ridge</option><option value="unverified">New Braunfels</option><option value="unverified">Niederwald</option><option value="unverified">Pflugerville</option><option value="unverified">Rollingwood</option><option value="unverified">Round Rock</option><option value="unverified">San Marcos</option><option value="unverified">Seguin</option><option value="unverified">Smithville</option><option value="unverified">Spring Branch</option><option value="unverified">Staples</option><option value="unverified">Sunset Valley</option><option value="unverified">Uhland</option><option value="unverified">Wimberley</option><option value="unverified">Woodcreek</option><option value="unverified">Somewhere else / unincorporated county</option></optgroup>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="pc-meas">2. How big is the trunk?</label>
+      <div class="measrow">
+        <input type="number" id="pc-meas" inputmode="decimal" min="0" step="0.5"
+               placeholder="e.g. 60" aria-describedby="pc-conv">
+        <select id="pc-unit" aria-label="measurement type">
+          <option value="circ">inches around (circumference)</option>
+          <option value="diam">inches across (diameter)</option>
+        </select>
+      </div>
+      <p class="hint" id="pc-conv">Most people measure around the trunk. I'll do the
+      conversion.</p>
+    </div>
+
+    <div class="field">
+      <label for="pc-species">3. What kind of tree is it?
+        <span class="hint">This only changes the answer in Austin, which protects a
+        specific list of species at 24 inches.</span></label>
+      <select id="pc-species">
+        <option value="">Choose…</option>
+        <option value="oak">Oak (any species — live, post, red, Shumard, bur…)</option><option value="pecan">Pecan</option><option value="elm-american">American elm</option><option value="elm-cedar">Cedar elm</option><option value="cypress-bald">Bald cypress</option><option value="ash-texas">Texas ash</option><option value="madrone">Texas madrone</option><option value="maple-bigtooth">Bigtooth maple</option><option value="walnut-arizona">Arizona walnut</option><option value="walnut-black">Eastern black walnut</option><option value="other">Something else (juniper/cedar, hackberry, mesquite, pine, Bradford pear…)</option><option value="unknown">I don't know what it is</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label><input type="checkbox" id="pc-hazard" style="width:auto;margin-right:.5rem">
+        The tree is dead, diseased, or an imminent hazard</label>
+    </div>
+
+    <button class="btn btn-primary btn-lg" type="submit" style="width:100%">
+      Check the ordinance
+    </button>
+  </form>
+
+  <div id="pc-out" class="result" hidden aria-live="polite"></div>
+
+  <div class="prose" style="margin-top:3rem">
+    <h2>What this tool is, and what it isn't</h2>
+    <p>It's a lookup of ordinance text I have read, for the four cities I have read it
+    for. It shows you the wording and the source so you can check me. It is not legal
+    advice and it is not the city's determination &mdash; only the city can give you
+    that, and the person who pays a mitigation assessment is the property owner.</p>
+    <p>I built it because this argument comes up constantly on jobs, and both sides are
+    usually guessing. Guessing is what gets a heritage oak cut down and a bill sent
+    afterwards.</p>
+
+    <h2>Why only four cities</h2>
+    <p>Because I've read four ordinances end to end. I work in {len(TOWNS)} towns, and I'm
+    not going to encode a rule I haven't verified into a tool that people will act on.
+    For the rest, the tool gives you the two questions to ask your city, which takes one
+    phone call and settles it properly.</p>
+    <p>I'll add cities as I verify them. If you've been through the process somewhere I
+    haven't covered, tell me what you found and I'll check it and add it.</p>
+
+    <h2>Measuring, properly</h2>
+    <p>Every one of these ordinances is written in inches measured <strong>4.5 feet above
+    the ground</strong> &mdash; foresters call it DBH, diameter at breast height. Put a
+    tape around the trunk at that height, and divide the circumference by 3.14 to get
+    diameter. Sixty inches around is roughly nineteen across, which is precisely where
+    Austin's rules begin.</p>
+    <p>Two things that trip people up: measure <em>below</em> the split if the trunk
+    divides under 4.5 feet, and remember that "caliper inches" and "diameter inches"
+    aren't quite the same term in every code, though at this size they're used
+    interchangeably in the ordinances here.</p>
+  </div>
+
+  <div class="prose" style="margin-top:1rem">{H.faq_block(faq)}</div>
+</div></section>
+
+{H.CANOPY_RULE}
+{H.cta_block("Still not sure what you're looking at?",
+             "Text me a photo of the tree and the tape measure and I'll tell you where you stand.")}
+
+<script>
+(function(){
+  var DATA = {"rules":{"austin":{"label":"Austin","verified":true,"unit":"diameter","measured_at":"4.5 feet above the ground","tiers":[{"min":24,"species":"heritage_list","verdict":"prohibited","headline":"This is a Heritage tree. Removal is prohibited, with narrow exceptions.","detail":"At 24 inches or more, and on the listed species, Austin classes this as a Heritage tree. Removal is prohibited except as provided under City Code section 25-8-641. That is a high bar, not a form you fill in. Talk to the City Arborist before you plan anything."},{"min":19,"species":null,"verdict":"permit","headline":"This is a Protected tree. You need a permit to remove it.","detail":"At 19 inches or more, any species is a Protected tree in Austin and a permit is required to remove it. If the removal isn't tied to construction, that goes through a Tree Ordinance Review Application (TORA)."},{"min":0,"species":null,"verdict":"clear","headline":"Under 19 inches on residential property, the city doesn't regulate it.","detail":"Austin's tree ordinance doesn't apply to trees under 19 inches in diameter on residential property, so no TORA is needed. Other permits may still apply to your wider project, and an HOA or subdivision restriction can protect a tree the city doesn't."}],"hazard_note":"Austin runs a separate track for dead, diseased and imminent-hazard trees. It's still a process \u2014 it isn't a free pass \u2014 but it's the right door to knock on.","quote":"A Protected tree has a diameter of 19 inches or more, measured 4.5 feet above the ground. A Heritage tree has a diameter of 24 inches or more and is one of the listed species; removal of a heritage tree is prohibited, except as provided under Section 25-8-641.","source":["City of Austin \u2014 Tree Reviews and Permitting","https://www.austintexas.gov/page/tree-reviews-and-permitting"],"who":"Austin Development Services, City Arborist Program"},"kyle":{"label":"Kyle","verified":true,"unit":"caliper","measured_at":"4.5 feet above the ground","tiers":[{"min":25,"species":null,"verdict":"permit","headline":"This is a specimen tree. You need Planning & Zoning approval.","detail":"Kyle's Chapter 54 treats a tree of 25 caliper inches or more as a specimen tree, which is meant to be preserved. Removing one means requesting permission from the Planning and Zoning Commission, and if it comes out it's replaced two-to-one, inch for inch."},{"min":0,"species":null,"verdict":"likely-clear","headline":"Below the 25-inch specimen threshold.","detail":"Kyle's specimen-tree provisions key on 25 caliper inches. Below that, the specimen rules aren't what's stopping you \u2014 but Chapter 54 is a landscaping and screening ordinance tied to development activity, so if this is part of a build or a permitted project, check with the city regardless."}],"hazard_note":null,"quote":"All specimen trees (25 caliper inches or larger) should be preserved, and when this is not feasible the applicant must request permission from the Planning & Zoning Commission to remove applicable trees. Replaced trees must be installed at a ratio of two-to-one, inch-for-inch.","source":["City of Kyle, Chapter 54 \u2014 Landscaping and Screening Requirements","https://ecode360.com/45593826"],"who":"City of Kyle Planning Department"},"buda":{"label":"Buda","verified":true,"unit":"caliper","measured_at":"4.5 feet above the ground","tiers":[{"min":20.0001,"species":null,"verdict":"council","headline":"Above the Protected range \u2014 this is likely a Heritage Tree.","detail":"Buda's Protected Tree band runs from 8 to 20 caliper inches. Above that, you're into Heritage Tree territory, and a Heritage Tree can only be removed after a City Council public hearing where the Council finds no other viable option exists. Whatever comes out is mitigated on the same site. I have not verified Buda's exact Heritage threshold number, so confirm it \u2014 but at this size, assume you're in the hardest category.","caveat":true},{"min":8,"species":null,"verdict":"permit","headline":"This is a Protected Tree. You need a removal permit.","detail":"From 8 to 20 caliper inches, Buda classes this as a Protected Tree, removable with a Tree Removal Permit approved by the Director of Planning. Removed trees are mitigated on the same site."},{"min":0,"species":null,"verdict":"likely-clear","headline":"Under 8 caliper inches, below Buda's Protected Tree band.","detail":"Buda's Protected Tree provisions start at 8 caliper inches. Below that the tree ordinance isn't your obstacle, though an HOA or plat restriction still might be."}],"hazard_note":null,"quote":"Trees between eight (8) and twenty (20) caliper inches are designated as Protected Trees, and any Protected Trees may be removed upon approval of a Tree Removal Permit by the Director of Planning. Heritage Trees may only be removed upon approval of a Tree Removal Permit by the City Council following a public hearing.","source":["City of Buda UDC \u2014 Tree Preservation and Mitigation","http://www.budatx.gov/DocumentCenter/View/7620/2019-24-UDC-Tree-Preservation-and-Mitigation"],"who":"City of Buda Planning Department"},"bastrop":{"label":"Bastrop","verified":true,"unit":"caliper","measured_at":"4.5 feet above the ground","tiers":[{"min":10,"species":null,"verdict":"permit","headline":"At 10 caliper inches or more, you need a permit if it's a listed species.","detail":"Bastrop protects trees that meet two conditions at once: on the city's Plant List, and 10 caliper inches or more measured 4.5 feet up. If both are true you apply through MyGov, which is free for residential, and the City Arborist inspects it. On a primary residence there's no mitigation fee \u2014 you replant one 2-inch caliper tree per tree removed. Non-residential is $400 per caliper inch or replanting equal caliper on site. Removing one without the permit doubles the mitigation and carries a $500 to $2,000 per-tree penalty."},{"min":0,"species":null,"verdict":"clear","headline":"Under 10 caliper inches, no permit needed.","detail":"Bastrop's protection starts at 10 caliper inches. Below that, or for a species not on the city's Plant List, no permit is required."}],"hazard_note":"Dead, diseased or hazardous trees can come out without mitigation fees if the City Arborist confirms it. Get that inspection before you cut.","quote":"Protected trees requiring permits must be listed on the Plant List AND measure 10 inches caliper or greater at 4.5 feet above ground. Residential primary residence: no fee, replant one 2-inch caliper tree per removal. Unauthorized removal: double mitigation fee, $500-$2,000 per tree per offense.","source":["City of Bastrop \u2014 Tree Mitigation (Ord. 2025-28, B3 Code 6.3.004)","https://www.cityofbastrop.org/page/plan.treemitigation"],"who":"Bastrop Development Services, 512-332-8840"},"schertz":{"label":"Schertz","verified":true,"unit":"diameter","measured_at":"4.5 feet above existing ground level","tiers":[{"min":24,"species":null,"verdict":"council","headline":"This is a Heritage Class tree.","detail":"Schertz classes anything 24 inches DBH or greater as Heritage Class, the most protected category. The UDC covers selective or individual removal of Heritage Class trees inside the city limits, not just development. Talk to Planning before you commit to anything."},{"min":8,"species":null,"verdict":"permit","headline":"This is a Protected Class tree.","detail":"In Schertz, a DBH of 8 inches up to just under 24 inches is Protected Class. The tree preservation and mitigation rules apply to individual removal within the city limits, so check with Planning rather than assuming residential means exempt."},{"min":0,"species":null,"verdict":"likely-clear","headline":"Under 8 inches DBH, below the Protected Class threshold.","detail":"Schertz's Protected Class starts at 8 inches DBH. Below that the tree preservation rules aren't your obstacle, though an HOA or plat restriction still can be."}],"hazard_note":null,"quote":"Protected Class Trees have a DBH between eight inches (8\") and less than twenty-four inches (24\"). Heritage Class Trees have a DBH greater than or equal to twenty-four inches (24\"). DBH is measured four and one half feet above existing ground level.","source":["Schertz Unified Development Code \u00a7 21.9.9 \u2014 Tree Preservation and Mitigation","http://schertz.elaws.us/code/udc_scundeco_art9_sec21.9.9"],"who":"Schertz Planning & Community Development"},"west-lake-hills":{"label":"West Lake Hills","verified":true,"unit":"diameter","measured_at":"4.5 feet above the ground","tiers":[{"min":0,"species":null,"verdict":"permit","headline":"Assume you need a permit. West Lake Hills is the strictest place I work.","detail":"The city's rule is that no trees or vegetation may be removed from any property without a permit, with only three exemptions: ordinary household gardening and ground care, pruning a single live tree or taking off dead branches, and clearing existing piles of dead brush. Protection reportedly starts as low as 6 inches in diameter \u2014 far below Austin's 19 \u2014 so a tree you'd never think twice about elsewhere is regulated here. Maintenance permits are free, so there's no reason not to ask."}],"hazard_note":null,"quote":"No trees or vegetation may be removed from any property without a permit except for common household gardening or ground care, pruning a single live tree or removing dead branches, and removing existing piles of dead brush or dead vegetation. Maintenance permits are free.","source":["City of West Lake Hills \u2014 Tree & Vegetation Removal (Code Ch. 22, Div. 9)","https://www.westlakehills.org/266/Tree-Vegetation-Removal"],"who":"West Lake Hills permitting, 512-610-6836","note":"The 6-inch figure comes from a secondary source rather than the code text, which I could not load. The permit-for-everything rule is from the city itself."},"dripping-springs":{"label":"Dripping Springs","verified":true,"unit":"diameter","measured_at":"4.5 feet above the ground","tiers":[{"min":0,"species":null,"verdict":"ask","headline":"Dripping Springs sets the numbers case by case \u2014 but the hazard exception is the one to know.","detail":"Dripping Springs requires mitigation for Heritage trees removed to accommodate development, and the development review committee decides the diameter inches owed. I haven't verified a fixed size threshold, so I won't invent one. What is verified and genuinely useful: a tree that a Certified Arborist documents as dead, diseased, or an imminent threat or hazard is excluded from the preservation requirements entirely."}],"hazard_note":"This is the town where a written arborist assessment does the most work. If the tree is genuinely failing, get that documented before you file anything.","quote":"Protected Healthy Trees that are Heritage trees requiring removal to accommodate development shall be replaced as directed. Trees identified as dead, diseased, or posing an imminent threat or hazard to people or property by a Certified Arborist are not included in tree preservation requirements evaluation.","source":["City of Dripping Springs \u2014 Landscape and Tree Preservation Ordinance","https://www.cityofdrippingsprings.com/landscapeordinance"],"who":"Dripping Springs Development Services"}},"heritage":["oak","pecan","elm-american","elm-cedar","cypress-bald","ash-texas","madrone","maple-bigtooth","walnut-arizona","walnut-black"]};
+  var f = document.getElementById('pc'),
+      out = document.getElementById('pc-out'),
+      conv = document.getElementById('pc-conv');
+
+  function diameter(){
+    var v = parseFloat(document.getElementById('pc-meas').value);
+    if (!v || v <= 0) return null;
+    return document.getElementById('pc-unit').value === 'circ' ? v / 3.14159 : v;
+  }
+
+  function updateConv(){
+    var d = diameter();
+    conv.textContent = d
+      ? 'That works out to about ' + d.toFixed(1) + ' inches in diameter.'
+      : 'Most people measure around the trunk. I\u2019ll do the conversion.';
+  }
+  document.getElementById('pc-meas').addEventListener('input', updateConv);
+  document.getElementById('pc-unit').addEventListener('change', updateConv);
+
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+
+  function render(html, tone){
+    out.hidden = false;
+    out.className = 'result tone-' + tone;
+    out.innerHTML = html;
+    out.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var city = document.getElementById('pc-city').value,
+        sp   = document.getElementById('pc-species').value,
+        haz  = document.getElementById('pc-hazard').checked,
+        d    = diameter();
+
+    if (!city) return render('<h3>Pick a city first.</h3><p>The answer depends entirely '
+      + 'on the jurisdiction \u2014 that\u2019s the whole problem with this question.</p>', 'ask');
+
+    if (city === 'unverified') {
+      return render(
+        '<h3>I haven\u2019t read this city\u2019s ordinance, so I won\u2019t guess.</h3>'
+        + '<p>Getting this wrong costs you a mitigation bill assessed after the tree is '
+        + 'already down, when you have no leverage. So here is the five-minute version '
+        + 'that settles it properly.</p>'
+        + '<p><strong>Call your city\u2019s planning or development services department '
+        + 'and ask exactly two questions:</strong></p>'
+        + '<ol><li>What trunk diameter triggers a tree removal permit here?</li>'
+        + '<li>Is there a protected or heritage species list, and what\u2019s on it?</li></ol>'
+        + '<p>That is the whole thing. Write down who told you and when.</p>'
+        + '<p>If you\u2019re outside any city limits, in unincorporated county, there is '
+        + 'usually no municipal tree ordinance at all \u2014 but deed restrictions, plat '
+        + 'notes and HOA rules still apply, and those catch people out.</p>'
+        + '<p>Tell me what you find and I\u2019ll verify it and add your city to this tool.</p>',
+        'ask');
+    }
+
+    if (d === null) return render('<h3>I need the trunk measurement.</h3>'
+      + '<p>Tape around the trunk at 4.5 feet off the ground. Every one of these '
+      + 'ordinances is written in inches at that height.</p>', 'ask');
+
+    var r = DATA.rules[city], tier = null;
+    for (var i = 0; i < r.tiers.length; i++) {
+      var t = r.tiers[i];
+      if (d >= t.min) {
+        if (t.species === 'heritage_list' && DATA.heritage.indexOf(sp) === -1) continue;
+        tier = t; break;
+      }
+    }
+    if (!tier) tier = r.tiers[r.tiers.length - 1];
+
+    var tone = {'prohibited':'stop','council':'stop','permit':'warn','ask':'ask',
+                'clear':'ok','likely-clear':'ok'}[tier.verdict] || 'ask';
+
+    var h = '<p class="verdict-k">' + esc(r.label) + ' \u00b7 about '
+          + d.toFixed(1) + ' inches ' + (r.unit === 'caliper' ? 'caliper' : 'diameter')
+          + '</p><h3>' + esc(tier.headline) + '</h3><p>' + esc(tier.detail) + '</p>';
+
+    if (sp === 'unknown' && city === 'austin')
+      h += '<p class="warn-line">You said you don\u2019t know the species. In Austin that '
+         + 'changes the answer at 24 inches \u2014 the Heritage list covers all oaks, pecan, '
+         + 'American and cedar elm, bald cypress, Texas ash, Texas madrone, bigtooth maple '
+         + 'and walnut. Worth identifying before you go further.</p>';
+
+    if (haz && r.hazard_note)
+      h += '<p class="warn-line"><strong>You marked it as dead or hazardous.</strong> '
+         + esc(r.hazard_note) + '</p>';
+    else if (haz)
+      h += '<p class="warn-line"><strong>You marked it as dead or hazardous.</strong> Most '
+         + 'ordinances treat that differently from a healthy tree you\u2019d simply rather '
+         + 'not have. Get it documented in writing by a qualified arborist before you file '
+         + 'anything.</p>';
+
+    h += '<div class="ord"><h4>What the ordinance actually says</h4><blockquote>'
+       + esc(r.quote) + '</blockquote>'
+       + '<p class="src">Source: <a href="' + r.source[1] + '" target="_blank" '
+       + 'rel="noopener">' + esc(r.source[0]) + '</a> \u00b7 Confirm with '
+       + esc(r.who) + ' before anything comes down. Ordinances change.</p></div>';
+
+    render(h, tone);
+    if (window.gtag) gtag('event', 'permit_lookup', {city: city, diameter: Math.round(d)});
+  });
+})();
+</script>
+
+</div></section>
+
+<section class="tight" style="padding-top:0"><div class="wrap reading">
   <div class="qa"><span class="k">Short answer</span><p>There's no statewide Texas rule
   &mdash; <strong>it's entirely your city</strong>. In <strong>Austin</strong>, any
   species at 19 inches diameter needs a permit and listed species at 24 inches generally
