@@ -119,12 +119,18 @@ section.tight{padding:clamp(34px,4.5vw,54px) 0}
   .nav.open a{padding:13px 0;border-bottom:1px solid var(--line);font-size:1.05rem}
 }
 
-.hero{position:relative;min-height:clamp(470px,68vh,660px);display:flex;align-items:flex-end;
+.hero{position:relative;min-height:clamp(470px,68vh,660px);display:flex;
+  flex-direction:column;justify-content:flex-end;align-items:stretch;
   color:#fff;overflow:hidden;background:var(--green)}
-.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* The responsive-image pass wraps every <img> in <picture>, which broke this
+   rule and left the hero photo sitting in the layout as a block element &mdash;    adding ~383px of height and pushing the CTA below the fold on every phone.
+   Target both shapes so it stays pinned as a background either way. */
+.hero>img,.hero>picture{position:absolute;inset:0;width:100%;height:100%}
+.hero>picture>img{width:100%;height:100%;object-fit:cover;display:block}
+.hero>img{object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(18,21,22,.30) 0%,rgba(18,21,22,.42) 38%,rgba(18,21,22,.93) 100%),linear-gradient(100deg,rgba(18,21,22,.62) 0%,rgba(18,21,22,.30) 46%,rgba(18,21,22,0) 74%)}
-.hero .wrap{position:relative;z-index:2;padding-top:76px;padding-bottom:50px}
+.hero .wrap{position:relative;z-index:2;width:100%;flex:0 0 auto;padding-top:76px;padding-bottom:50px}
 .hero h1{color:#fff;max-width:17ch;text-shadow:0 2px 26px rgba(0,0,0,.6)}
 .hero .lede{color:#e9ebea;max-width:52ch;text-shadow:0 1px 16px rgba(0,0,0,.7)}
 .hero .eyebrow{color:#ffb98f}
@@ -478,6 +484,47 @@ a.card:hover::before{transform:translateX(0)}
 .checker .field label{font-size:.98rem}
 .checker .field:last-of-type{margin-bottom:22px}
 .checker button[type=submit]{margin-top:4px}
+
+/* ==================================================================
+   MOBILE HERO
+   The hero was rendering 1113px tall inside a 664px viewport, which
+   pushed the Call and Text buttons 340px below the fold. On a page
+   whose entire job is generating phone calls, that is the single most
+   expensive layout bug on the site.
+   Target: eyebrow, headline, one line of promise, the speed badge and
+   BOTH buttons all inside the first screen on an iPhone SE.
+   ================================================================== */
+@media(max-width:600px){
+  .hero{min-height:auto}
+  .hero .wrap{padding-top:24px;padding-bottom:28px}
+  .hero .eyebrow{font-size:.66rem;letter-spacing:.11em;margin-bottom:.65rem}
+  .hero .eyebrow::after{display:none}
+  .hero h1{font-size:1.95rem;line-height:1.13;max-width:none;margin-bottom:.45em;
+    text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .hero .lede{font-size:1rem;line-height:1.45;max-width:none;margin-bottom:0}
+  .hero .btn-row{margin-top:1.1rem;gap:9px;flex-direction:column;align-items:stretch}
+  .hero .btn-lg{padding:15px 18px;font-size:1.02rem;width:100%}
+  .hero .speed{margin-top:.95rem;font-size:.85rem;padding:7px 14px 7px 11px}
+  /* the scrim can be lighter now the block is shorter */
+  .hero::after{background:linear-gradient(180deg,rgba(18,21,22,.34) 0%,
+    rgba(18,21,22,.46) 40%,rgba(18,21,22,.93) 100%)}
+}
+@media(max-width:600px) and (max-height:600px){
+  /* iPhone SE and similar: trim further so the buttons still clear */
+  .hero h1{font-size:1.72rem}
+  .hero .lede{font-size:.95rem}
+  .hero .wrap{padding-top:18px}
+}
+
+/* one lede for phones, a fuller one for desktop &mdash; the long version wrapped to
+   seven lines on a 390px screen and pushed the buttons off the fold */
+.lede-sm{display:none}
+.lede-lg{display:inline}
+@media(max-width:600px){
+  .lede-sm{display:inline}
+  .lede-lg{display:none}
+  .hero h1{font-size:1.78rem}
+}
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TreeService","@id":"https://oatreeservice.com/#business","name":"Ozark of Austin Tree Service","url":"https://oatreeservice.com","telephone":"479-422-9105","email":"ozarkofaustin@gmail.com","image":"https://oatreeservice.com/img/bramel-climbing-live-oak.jpg","priceRange":"$$","founder":{"@type":"Person","name":"Bramel Harrison"},"foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Kyle","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"geoRadius":"80450"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"12"},"sameAs":["https://www.facebook.com/ozarkofaustin","https://instagram.com/oatreeservice"]}</script>
