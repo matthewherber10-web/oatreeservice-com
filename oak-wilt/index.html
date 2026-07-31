@@ -527,7 +527,7 @@ a.card:hover::before{transform:translateX(0)}
 }
 
 </style>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-46HXR3K1Y0"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-46HXR3K1Y0");</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TreeService","@id":"https://oatreeservice.com/#business","name":"Ozark of Austin Tree Service","url":"https://oatreeservice.com","telephone":"512-546-3576","email":"ozarkofaustin@gmail.com","image":"https://oatreeservice.com/img/bramel-climbing-live-oak.jpg","priceRange":"$$","founder":{"@type":"Person","name":"Bramel Harrison"},"foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Kyle","addressRegion":"TX","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"areaServed":{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":30.0468,"longitude":-97.8772},"geoRadius":"80450"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"12"},"sameAs":["https://www.facebook.com/ozarkofaustin","https://instagram.com/oatreeservice"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When should you not trim oak trees in Texas?","acceptedAnswer":{"@type":"Answer","text":"Avoid pruning oaks from February 1 through June 30. Sap beetles that spread oak wilt are active then and fresh cuts attract them. Fall and winter are the best time to prune oaks in Central Texas."}},{"@type":"Question","name":"What are the first signs of oak wilt?","acceptedAnswer":{"@type":"Answer","text":"On live oaks, veinal necrosis \u2014 leaf veins turning yellow or brown while tissue between them stays green, with leaves dropping while partly green. On red oaks, rapid crown bronzing in early summer."}},{"@type":"Question","name":"How does oak wilt spread?","acceptedAnswer":{"@type":"Answer","text":"Sap-feeding beetles carry spores from fungal mats on infected red oaks to fresh wounds on healthy oaks, and the fungus also moves underground between live oaks through grafted root systems."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://oatreeservice.com/"},{"@type":"ListItem","position":2,"name":"Oak Wilt in Central Texas","item":"https://oatreeservice.com/oak-wilt/"}]}</script></head><body>
@@ -697,5 +697,77 @@ a.card:hover::before{transform:translateX(0)}
   <a href="tel:+15125463576"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 005.5 5.5L16 12l4 1.5v3a2 2 0 01-2.2 2A16 16 0 014.5 5.2A2 2 0 016.5 3z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>Call Bramel</a>
   <a class="alt" href="sms:+15125463576"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4v-14z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>Text a photo</a>
 </div>
+<script>
+(function(){
+  if (typeof gtag !== 'function') return;
+  var path = location.pathname;
 
+  function where(el){
+    if (el.closest('.callbar')) return 'sticky_bar';
+    if (el.closest('.hero')) return 'hero';
+    if (el.closest('.ftr')) return 'footer';
+    if (el.closest('.reach')) return 'contact_cards';
+    if (el.closest('.hdr')) return 'header';
+    if (el.closest('.bg-green')) return 'page_cta';
+    if (el.closest('.faq')) return 'faq';
+    return 'body';
+  }
+
+  // what kind of page is this &mdash; lets us compare town pages vs service pages
+  var kind = 'other';
+  if (path === '/') kind = 'home';
+  else if (path.indexOf('/tree-service/') === 0) kind = 'town';
+  else if (/^\/(tree-trimming|tree-removal|stump-grinding|emergency-tree-service)\//.test(path)) kind = 'service';
+  else if (/^\/(oak-wilt|central-texas-tree-guide|trim-or-remove|storm-damage|what-it-costs)\//.test(path)) kind = 'guide';
+  else if (path.indexOf('/permit') === 0) kind = 'permit_tool';
+  gtag('event', 'page_kind', {page_kind: kind, page: path});
+
+  // ---- the money events -------------------------------------------------
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href]'); if (!a) return;
+    var h = a.getAttribute('href') || '';
+    var base = {cta_location: where(a), page: path, page_kind: kind};
+    if (h.indexOf('tel:') === 0)        gtag('event','phone_click', base);
+    else if (h.indexOf('sms:') === 0)   gtag('event','text_click', base);
+    else if (h.indexOf('mailto:') === 0) gtag('event','email_click', base);
+    else if (/^https?:/.test(h) && h.indexOf(location.host) === -1)
+      gtag('event','outbound_click', {link_domain: (h.split('/')[2]||''), page: path});
+  }, {passive:true});
+
+  // ---- did they actually read it ---------------------------------------
+  var marks = {25:0, 50:0, 75:0, 90:0};
+  var ticking = false;
+  function depth(){
+    ticking = false;
+    var doc = document.documentElement;
+    var pct = Math.round(((window.scrollY + window.innerHeight) / doc.scrollHeight) * 100);
+    for (var k in marks){
+      if (!marks[k] && pct >= +k){ marks[k] = 1;
+        gtag('event','scroll_depth',{percent:+k, page:path, page_kind:kind}); }
+    }
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking){ ticking = true; requestAnimationFrame(depth); }
+  }, {passive:true});
+
+  // an "engaged" visit &mdash; 30s or half the page. Filters out bounces.
+  var engaged = false;
+  function engage(){ if (engaged) return; engaged = true;
+    gtag('event','engaged_view',{page:path, page_kind:kind}); }
+  setTimeout(engage, 30000);
+  window.addEventListener('scroll', function(){
+    var d = document.documentElement;
+    if ((window.scrollY + window.innerHeight) / d.scrollHeight > 0.5) engage();
+  }, {passive:true, once:false});
+
+  // ---- FAQ opens: tells us what people are actually worried about -------
+  document.addEventListener('toggle', function(e){
+    var d = e.target;
+    if (d.tagName === 'DETAILS' && d.open){
+      var q = (d.querySelector('summary')||{}).textContent || '';
+      gtag('event','faq_open',{question: q.trim().slice(0,90), page: path});
+    }
+  }, true);
+})();
+</script>
 </body></html>
