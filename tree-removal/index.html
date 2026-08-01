@@ -605,6 +605,39 @@ a.card:hover::before{transform:translateX(0)}
   .hero .lede{color:#f0f2f1}
 }
 
+/* ---------- quote form ---------- */
+.quoteform .field{margin-bottom:19px}
+.quoteform input,.quoteform textarea{font-size:16px}  /* 16px stops iOS zooming on focus */
+.quoteform textarea{min-height:96px}
+.quoteform .err{margin:6px 0 0;font:500 .88rem/1.4 var(--sans);color:#b3261e}
+.quoteform .is-bad{border-color:#b3261e;background:#fdf3f2}
+.quoteform .is-bad:focus{box-shadow:0 0 0 3px rgba(179,38,30,.14)}
+.quoteform button[type=submit]{margin-top:6px}
+.quoteform button[disabled]{opacity:.72;cursor:default}
+.formnote{margin:14px 0 0;font-size:.92rem;line-height:1.5;color:var(--ink-3);
+  text-align:center}
+.formnote a{color:var(--green-2);font-weight:600}
+
+/* the compact version at the foot of a page shouldn't shout as loudly */
+.formwrap-inline{margin-top:3rem;padding-top:2.4rem;border-top:1px solid var(--line)}
+
+/* ---------- desktop nudge bar ---------- */
+.nudge{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--green);
+  color:#e4e8e6;box-shadow:0 -8px 28px rgba(18,21,22,.28);
+  animation:nudgeup .35s cubic-bezier(.2,.8,.3,1)}
+@keyframes nudgeup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.nudge-in{max-width:var(--wrap);margin:0 auto;padding:16px 22px;display:flex;
+  align-items:center;gap:18px;flex-wrap:wrap}
+.nudge-t{font:600 1.08rem/1.2 var(--serif);color:#fff;margin:0}
+.nudge-s{margin:0;font-size:.93rem;color:#a9b6ae;flex:1 1 auto}
+.nudge .btn{padding:12px 22px;font-size:.96rem}
+.nudge-tel{color:#cfd8d2;font:600 .95rem var(--sans);text-decoration:none;white-space:nowrap}
+.nudge-tel:hover{color:#fff}
+.nudge-x{background:none;border:0;color:#8fa197;font-size:1.5rem;line-height:1;
+  cursor:pointer;padding:4px 8px}
+.nudge-x:hover{color:#fff}
+@media(max-width:1040px){.nudge{display:none!important}}
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-46HXR3K1Y0"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-46HXR3K1Y0");</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xusi2ht8kr");</script>
@@ -647,6 +680,159 @@ a.card:hover::before{transform:translateX(0)}
     </div>
   </div>
   <div class="prose" style="max-width:70ch"><h2>Questions I get asked</h2><div class="faq"><details><summary>Do I need a permit to remove a tree in Texas?</summary><div class="a"><p>It depends entirely on your city, not the state. In Austin, any species 19 inches or more in diameter measured 4.5 feet up is a Protected tree and needs a permit; at 24 inches, listed species including all oaks and pecan become Heritage trees and removal is prohibited except under specific code provisions. Trees under 19 inches on residential property aren't regulated. Buda, Kyle and Dripping Springs each have different thresholds and processes.</p></div></details><details><summary>How much does tree removal cost?</summary><div class="a"><p>I quote per tree after looking at it. The biggest cost driver isn't height, it's access: a tree with a clear drop zone comes down in large pieces quickly, while a tree over a roof or pool has to be dismantled piece by piece on rigging lines and takes several times as long.</p></div></details><details><summary>Should I remove a tree that's leaning?</summary><div class="a"><p>Only if the lean is new. A tree that has leaned for years, with straight growth above the lean, has adapted to it. What's genuinely urgent is a lean that appeared recently, especially with soil heaving or cracking on the opposite side of the base, because that means the root plate is failing.</p></div></details><details><summary>Does a tree with oak wilt have to be removed?</summary><div class="a"><p>Infected red oaks are usually removed, because red oaks form the fungal mats that spread oak wilt to nearby trees. Live oaks are handled differently, since they spread it mainly through connected root systems, so treatment there focuses on trenching to break root grafts.</p></div></details><details><summary>Is ball moss killing my tree?</summary><div class="a"><p>No. Ball moss is an epiphyte, not a parasite. It doesn't feed on the tree. It tends to colonize limbs that are already thin or declining, which is why people associate it with dying trees. Removing it is a cosmetic and airflow decision, not a rescue.</p></div></details></div></div>
+  <div class="formwrap-inline"><div class="toolcard"><div class="toolcard-hd"><p class="k">Free estimate</p><p class="t">Rather not phone? Tell me here.</p><p class="s">Four boxes, about thirty seconds. I&rsquo;ll ring you back the same day if it&rsquo;s a weekday before 5pm.</p></div></div>
+<div class="toolcard toolcard-body">
+<form class="form quoteform" id="qf" novalidate data-action="https://formsubmit.co/ajax/ozarkofaustin@gmail.com" data-source="service_page">
+  <div class="field">
+    <label for="qf-name">Your name</label>
+    <input type="text" id="qf-name" name="name" autocomplete="name"
+           autocapitalize="words" required>
+    <p class="err" id="e-name" hidden>I need something to call you.</p>
+  </div>
+
+  <div class="field">
+    <label for="qf-phone">Phone number
+      <span class="hint">So I can ring you back. I don&rsquo;t send marketing texts.</span></label>
+    <input type="tel" id="qf-phone" name="phone" inputmode="tel" autocomplete="tel"
+           placeholder="(512) 555-0134" required>
+    <p class="err" id="e-phone" hidden>That doesn&rsquo;t look like a full phone number.</p>
+  </div>
+
+  <div class="field">
+    <label for="qf-town">Which town?</label>
+    <input type="text" id="qf-town" name="town" list="qf-towns"
+           placeholder="Kyle, Buda, Dripping Springs&hellip;"
+           autocomplete="address-level2" autocapitalize="words" required>
+    <datalist id="qf-towns"><option value="Kyle"><option value="Buda"><option value="San Marcos"><option value="Wimberley"><option value="Dripping Springs"><option value="Driftwood"><option value="Woodcreek"><option value="Mountain City"><option value="Niederwald"><option value="Uhland"><option value="Bear Creek"><option value="Austin"><option value="Manchaca"><option value="Del Valle"><option value="Creedmoor"><option value="Mustang Ridge"><option value="Sunset Valley"><option value="West Lake Hills"><option value="Rollingwood"><option value="Bee Cave"><option value="Lakeway"><option value="Manor"><option value="Pflugerville"><option value="Lockhart"><option value="Luling"><option value="Martindale"><option value="Maxwell"><option value="Dale"><option value="Bastrop"><option value="Cedar Creek"><option value="Elgin"><option value="Smithville"><option value="New Braunfels"><option value="Canyon Lake"><option value="Bulverde"><option value="Spring Branch"><option value="Garden Ridge"><option value="Seguin"><option value="Schertz"><option value="Cibolo"><option value="Marion"><option value="Staples"><option value="Round Rock"><option value="Georgetown"><option value="Cedar Park"><option value="Leander"><option value="Hutto"><option value="Blanco"><option value="Johnson City"></datalist>
+    <p class="err" id="e-town" hidden>Which town is the tree in?</p>
+  </div>
+
+  <div class="field">
+    <label for="qf-details">What&rsquo;s going on?
+      <span class="hint">A sentence is plenty. &ldquo;Big limb over the garage I don&rsquo;t
+      like the look of&rdquo; tells me most of what I need.</span></label>
+    <textarea id="qf-details" name="details" rows="3" required></textarea>
+    <p class="err" id="e-details" hidden>Even a few words helps me price it.</p>
+  </div>
+
+  <div class="field">
+    <label for="qf-email">Email
+      <span class="hint">Optional &mdash; only if you&rsquo;d rather I wrote than called.</span></label>
+    <input type="email" id="qf-email" name="email" autocomplete="email" inputmode="email">
+  </div>
+
+  <!-- honeypot; a human never sees this -->
+  <input type="text" name="_honey" tabindex="-1" autocomplete="off"
+         style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
+
+  <button class="btn btn-primary btn-lg" type="submit" id="qf-go" style="width:100%">
+    Send it to Bramel
+  </button>
+
+  <p class="formnote">Got a photo of the tree? <a href="sms:+15125463576">Text it to (512) 546-3576</a>
+  &mdash; that&rsquo;s the fastest way to get a price, and half the time I can quote from
+  the picture without driving out.</p>
+</form>
+<div id="qf-out" class="result" hidden role="status" aria-live="polite"></div>
+</div>
+
+<script>
+(function(){
+  var f = document.getElementById('qf'); if (!f) return;
+  var out = document.getElementById('qf-out'), btn = document.getElementById('qf-go');
+  var FIELDS = ['name','phone','town','details'];
+
+  function digits(s){ return (s.match(/\d/g) || []).length; }
+  function bad(nm){
+    var v = f[nm].value.trim();
+    if (!v) return true;
+    if (nm === 'phone') return digits(v) < 10;   // US number, ignore formatting
+    return false;
+  }
+  function mark(nm, show){
+    var e = document.getElementById('e-' + nm);
+    if (e) e.hidden = !show;
+    f[nm].setAttribute('aria-invalid', show ? 'true' : 'false');
+    f[nm].classList.toggle('is-bad', show);
+  }
+
+  // validate when they LEAVE a field, never while typing
+  FIELDS.forEach(function(nm){
+    f[nm].addEventListener('blur', function(){ mark(nm, bad(nm)); });
+    f[nm].addEventListener('input', function(){
+      if (!bad(nm)) mark(nm, false);
+    });
+  });
+
+  function show(html, tone){
+    out.hidden = false;
+    out.className = 'result tone-' + tone;
+    out.innerHTML = html;
+  }
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (f._honey.value) return;
+
+    var firstBad = null;
+    FIELDS.forEach(function(nm){
+      var b = bad(nm); mark(nm, b);
+      if (b && !firstBad) firstBad = nm;
+    });
+    if (firstBad) {
+      f[firstBad].focus();
+      f[firstBad].scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending\u2026';
+
+    fetch(f.dataset.action, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+      body: JSON.stringify({
+        name: f.name.value.trim(),
+        phone: f.phone.value.trim(),
+        town: f.town.value.trim(),
+        details: f.details.value.trim(),
+        email: f.email.value.trim(),
+        _subject: "New estimate request from oatreeservice.com",
+        _template: 'table',
+        _captcha: 'false',
+        came_from: f.dataset.source + ' \u2014 ' + location.pathname
+      })
+    })
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(){
+      f.style.display = 'none';
+      show('<p class="verdict-k">Sent</p>'
+        + '<h3>Got it \u2014 I&rsquo;ll ring you.</h3>'
+        + '<p>If you sent that on a weekday before 5pm you&rsquo;ll hear from me today. '
+        + 'Otherwise it&rsquo;ll be first thing tomorrow.</p>'
+        + '<p>If it&rsquo;s a hazard and you&rsquo;d rather not wait, ring me now on '
+        + '<a href="tel:+15125463576">(512) 546-3576</a>. And if you have a photo of the tree, '
+        + '<a href="sms:+15125463576">text it over</a> \u2014 it saves me a trip.</p>', 'ok');
+      out.scrollIntoView({behavior:'smooth', block:'center'});
+      if (window.gtag) gtag('event', 'form_submit', {
+        page: location.pathname, cta_location: f.dataset.source,
+        has_email: !!f.email.value.trim()
+      });
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Send it to Bramel';
+      show('<h3>That didn&rsquo;t go through.</h3>'
+        + '<p>Something broke at my end, not yours \u2014 everything you typed is still '
+        + 'there. Try again, or skip it and <a href="tel:+15125463576">call (512) 546-3576</a>. '
+        + 'That reaches me faster anyway.</p>', 'stop');
+      out.scrollIntoView({behavior:'smooth', block:'center'});
+      if (window.gtag) gtag('event', 'form_error', {page: location.pathname});
+    });
+  });
+})();
+</script>
+</div>
 </div></section>
 
 <section class="bg-2"><div class="wrap">

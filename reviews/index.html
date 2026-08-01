@@ -605,6 +605,39 @@ a.card:hover::before{transform:translateX(0)}
   .hero .lede{color:#f0f2f1}
 }
 
+/* ---------- quote form ---------- */
+.quoteform .field{margin-bottom:19px}
+.quoteform input,.quoteform textarea{font-size:16px}  /* 16px stops iOS zooming on focus */
+.quoteform textarea{min-height:96px}
+.quoteform .err{margin:6px 0 0;font:500 .88rem/1.4 var(--sans);color:#b3261e}
+.quoteform .is-bad{border-color:#b3261e;background:#fdf3f2}
+.quoteform .is-bad:focus{box-shadow:0 0 0 3px rgba(179,38,30,.14)}
+.quoteform button[type=submit]{margin-top:6px}
+.quoteform button[disabled]{opacity:.72;cursor:default}
+.formnote{margin:14px 0 0;font-size:.92rem;line-height:1.5;color:var(--ink-3);
+  text-align:center}
+.formnote a{color:var(--green-2);font-weight:600}
+
+/* the compact version at the foot of a page shouldn't shout as loudly */
+.formwrap-inline{margin-top:3rem;padding-top:2.4rem;border-top:1px solid var(--line)}
+
+/* ---------- desktop nudge bar ---------- */
+.nudge{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--green);
+  color:#e4e8e6;box-shadow:0 -8px 28px rgba(18,21,22,.28);
+  animation:nudgeup .35s cubic-bezier(.2,.8,.3,1)}
+@keyframes nudgeup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.nudge-in{max-width:var(--wrap);margin:0 auto;padding:16px 22px;display:flex;
+  align-items:center;gap:18px;flex-wrap:wrap}
+.nudge-t{font:600 1.08rem/1.2 var(--serif);color:#fff;margin:0}
+.nudge-s{margin:0;font-size:.93rem;color:#a9b6ae;flex:1 1 auto}
+.nudge .btn{padding:12px 22px;font-size:.96rem}
+.nudge-tel{color:#cfd8d2;font:600 .95rem var(--sans);text-decoration:none;white-space:nowrap}
+.nudge-tel:hover{color:#fff}
+.nudge-x{background:none;border:0;color:#8fa197;font-size:1.5rem;line-height:1;
+  cursor:pointer;padding:4px 8px}
+.nudge-x:hover{color:#fff}
+@media(max-width:1040px){.nudge{display:none!important}}
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-46HXR3K1Y0"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-46HXR3K1Y0");</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xusi2ht8kr");</script>
