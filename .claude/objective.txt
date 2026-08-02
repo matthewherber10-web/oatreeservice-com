@@ -1,0 +1,9 @@
+Ozark of Austin
+
+Deploy folder for oatreeservice.com. This is what gets pushed live.
+Do not edit files here by hand -- they are overwritten on every build.
+
+Build in ../build, then:
+  rm -rf preview-deploy/* && cp -R site/. preview-deploy/
+  echo oatreeservice.com > CNAME && touch .nojekyll
+  git add -A && git commit && git push

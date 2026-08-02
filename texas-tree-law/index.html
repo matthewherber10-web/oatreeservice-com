@@ -682,6 +682,22 @@ a.card:hover::before{transform:translateX(0)}
 .chk:has(input:checked){background:var(--green-soft);border-color:var(--green-2)}
 .result dt{margin-top:.9em}
 
+/* ---------- share button (tools and guides only) ---------- */
+.sharebar{margin:2.2rem 0 0;display:flex;justify-content:center}
+.sharebtn{display:inline-flex;align-items:center;gap:9px;background:var(--white);
+  border:1.5px solid var(--line);border-radius:100px;padding:11px 22px;cursor:pointer;
+  font:600 .95rem/1 var(--sans);color:var(--green-2);min-height:44px;
+  transition:border-color .14s,transform .12s,box-shadow .14s}
+.sharebtn:hover{border-color:var(--green-2);box-shadow:var(--shadow)}
+.sharebtn:active{transform:translateY(1px)}
+
+/* ---------- footer social: icons, not bare words ---------- */
+.social{display:inline-flex;gap:10px;align-items:center}
+.social a{display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.22);
+  color:#cfd8d2;transition:background .14s,color .14s,border-color .14s}
+.social a:hover{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.45)}
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-46HXR3K1Y0"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-46HXR3K1Y0");</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xusi2ht8kr");</script>
@@ -811,6 +827,37 @@ a.card:hover::before{transform:translateX(0)}
   <div class="prose" style="margin-top:1rem"><h2>Questions I get asked</h2><div class="faq"><details><summary>My neighbor's tree fell on my house. Who pays in Texas?</summary><div class="a"><p>It turns on whether the tree was healthy. If a healthy tree comes down in a storm, Texas treats that as an act of God — an occurrence due directly and exclusively to natural causes without human intervention — and generally each party bears their own damage. If the tree was already decayed, diseased, dead or otherwise dangerous before the storm, and the owner knew or should have known, that's negligence and they can be liable. In practice most people claim on their own homeowner's policy either way, because it's faster than pursuing a neighbour.</p></div></details><details><summary>Can I trim my neighbor's tree branches that hang over my property in Texas?</summary><div class="a"><p>Generally yes, up to the property line. Texas follows the common-law self-help rule: you may cut back branches and roots that encroach on your land. Two hard limits. You cannot go onto their property to do it without permission, and you cannot kill or seriously damage the tree — if you do, you can be sued for the harm. Improper cuts that kill a mature tree are exactly how a small dispute becomes an expensive one.</p></div></details><details><summary>Can I make my neighbor trim their tree?</summary><div class="a"><p>Not if it's healthy. Under Texas common law a property owner has no affirmative duty to trim a healthy tree, even where the branches extend over your roof or your parked car. That changes if the tree is dangerous — a decayed or dead tree is a different situation, and local government can sometimes issue a notice about a hazardous tree.</p></div></details><details><summary>Does homeowners insurance cover a tree falling on my house in Texas?</summary><div class="a"><p>Most policies cover damage from a fallen tree to an insured structure, and commonly do so even when the tree came from a neighbouring property. What they typically don't cover is removing a tree that simply fell in your yard without hitting anything. Coverage varies, so call your insurer — and photograph everything before any cleanup starts, because images taken before the mess is moved are what make a claim simple.</p></div></details><details><summary>How do I prove a tree was dangerous before it fell?</summary><div class="a"><p>Documentation, created before the failure rather than after. A written assessment from a qualified arborist describing the condition, dated, is the strongest form. If it's a neighbour's tree that worries you, putting your concern in writing to them — and keeping a copy — matters, because the negligence standard turns on what the owner knew or should have known. A conversation over the fence leaves no record.</p></div></details><details><summary>Is there a Texas law about trees on property lines?</summary><div class="a"><p>There's no statute covering most of this. Texas tree liability is common law, built from court decisions rather than legislation, which is why the answers are principles rather than bright lines. Where a tree straddles a boundary, ownership is generally shared and neither owner can remove it unilaterally — that's the situation most worth getting proper legal advice on before touching anything.</p></div></details></div></div>
 </div></section>
 
+<div class="sharebar">
+  <button type="button" class="sharebtn" id="shb">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="17" height="17">
+      <path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round"/>
+      <path d="M12 15V4m0 0L8 8m4-4l4 4" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span id="shb-t">Send this to whoever needs it</span>
+  </button>
+</div>
+<script>
+(function(){
+  var btn = document.getElementById('shb'); if (!btn) return;
+  var lab = document.getElementById('shb-t'), original = lab.textContent;
+  btn.addEventListener('click', function(){
+    var data = {title: document.title, url: location.href};
+    if (navigator.share) {
+      navigator.share(data).then(function(){
+        if (window.gtag) gtag('event','share',{method:'native',page:location.pathname});
+      }).catch(function(){});                      // user cancelled; not an error
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(location.href).then(function(){
+        lab.textContent = 'Link copied';
+        setTimeout(function(){ lab.textContent = original; }, 2200);
+        if (window.gtag) gtag('event','share',{method:'copy',page:location.pathname});
+      });
+    }
+  });
+})();
+</script>
 <div class="wrap"><svg class="canopy-rule" viewBox="0 0 1200 26" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 25C120 25 150 4 240 4s120 21 240 21 120-21 240-21 120 21 240 21 120-21 240-21" stroke="currentColor" stroke-width="1.5"/></svg></div>
 <section class="bg-green"><div class="wrap">
 <div style="text-align:center;max-width:60ch;margin:0 auto">
@@ -867,7 +914,18 @@ a.card:hover::before{transform:translateX(0)}
 </div>
 <div class="ftr-bot">
   <span>&copy; 2026 Ozark of Austin Tree Service. Kyle, Texas.</span>
-  <span><a href="https://www.facebook.com/ozarkofaustin" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://instagram.com/oatreeservice" target="_blank" rel="noopener">Instagram</a></span>
+  <span class="social">
+    <a href="https://www.facebook.com/ozarkofaustin" target="_blank" rel="noopener" aria-label="Ozark of Austin on Facebook" title="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>
+    </a>
+    <a href="https://instagram.com/oatreeservice" target="_blank" rel="noopener" aria-label="Ozark of Austin on Instagram" title="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.9" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </span>
 </div></div></footer>
 <div class="callbar">
   <a href="tel:+15125463576"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 005.5 5.5L16 12l4 1.5v3a2 2 0 01-2.2 2A16 16 0 014.5 5.2A2 2 0 016.5 3z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>Call Bramel</a>

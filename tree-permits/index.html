@@ -682,6 +682,22 @@ a.card:hover::before{transform:translateX(0)}
 .chk:has(input:checked){background:var(--green-soft);border-color:var(--green-2)}
 .result dt{margin-top:.9em}
 
+/* ---------- share button (tools and guides only) ---------- */
+.sharebar{margin:2.2rem 0 0;display:flex;justify-content:center}
+.sharebtn{display:inline-flex;align-items:center;gap:9px;background:var(--white);
+  border:1.5px solid var(--line);border-radius:100px;padding:11px 22px;cursor:pointer;
+  font:600 .95rem/1 var(--sans);color:var(--green-2);min-height:44px;
+  transition:border-color .14s,transform .12s,box-shadow .14s}
+.sharebtn:hover{border-color:var(--green-2);box-shadow:var(--shadow)}
+.sharebtn:active{transform:translateY(1px)}
+
+/* ---------- footer social: icons, not bare words ---------- */
+.social{display:inline-flex;gap:10px;align-items:center}
+.social a{display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.22);
+  color:#cfd8d2;transition:background .14s,color .14s,border-color .14s}
+.social a:hover{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.45)}
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-46HXR3K1Y0"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-46HXR3K1Y0");</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xusi2ht8kr");</script>
@@ -967,6 +983,37 @@ a.card:hover::before{transform:translateX(0)}
   <div class="prose" style="margin-top:1rem"><h2>Questions I get asked</h2><div class="faq"><details><summary>Do I need a permit to remove a tree in Texas?</summary><div class="a"><p>There is no statewide permit requirement. It's set by your city. Austin requires a permit for any species 19 inches or more in diameter at 4.5 feet, and prohibits removal of listed Heritage species at 24 inches except under specific code provisions. Buda requires a permit for Protected Trees from 8 to 20 caliper inches and a City Council public hearing for Heritage Trees. Kyle requires Planning and Zoning approval for specimen trees of 25 caliper inches or more, with two-to-one inch-for-inch replacement.</p></div></details><details><summary>What is a heritage tree in Austin?</summary><div class="a"><p>In Austin, a Heritage tree is 24 inches or more in diameter measured 4.5 feet above the ground and belongs to a listed species: all oaks, pecan, American elm, cedar elm, bald cypress, Texas ash, Texas madrone, bigtooth maple, and Arizona or eastern black walnut. Removal is prohibited except as provided under City Code section 25-8-641.</p></div></details><details><summary>Can I remove a tree under 19 inches in Austin without a permit?</summary><div class="a"><p>On residential property, trees under 19 inches in diameter are not regulated by the city's tree ordinance, so no Tree Ordinance Review Application is needed. Other permits may still apply to your project, and the tree may be protected by a subdivision restriction or HOA rule separate from city code.</p></div></details><details><summary>How do I measure tree diameter for a permit?</summary><div class="a"><p>Measure the circumference of the trunk at 4.5 feet above ground level and divide by 3.14 to get diameter. If the trunk divides into multiple stems below 4.5 feet, measure below the split.</p></div></details><details><summary>Does a dead or hazardous tree still need a permit?</summary><div class="a"><p>Usually it's handled on a different track rather than exempted outright. Austin has a separate process for dead, diseased and imminent-hazard trees. Dripping Springs excludes trees documented by a Certified Arborist as dead, diseased or an imminent hazard from its preservation requirements. Written documentation from a qualified arborist is generally what the city wants to see.</p></div></details></div></div>
 </div></section>
 
+<div class="sharebar">
+  <button type="button" class="sharebtn" id="shb">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="17" height="17">
+      <path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round"/>
+      <path d="M12 15V4m0 0L8 8m4-4l4 4" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span id="shb-t">Send this to a neighbour</span>
+  </button>
+</div>
+<script>
+(function(){
+  var btn = document.getElementById('shb'); if (!btn) return;
+  var lab = document.getElementById('shb-t'), original = lab.textContent;
+  btn.addEventListener('click', function(){
+    var data = {title: document.title, url: location.href};
+    if (navigator.share) {
+      navigator.share(data).then(function(){
+        if (window.gtag) gtag('event','share',{method:'native',page:location.pathname});
+      }).catch(function(){});                      // user cancelled; not an error
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(location.href).then(function(){
+        lab.textContent = 'Link copied';
+        setTimeout(function(){ lab.textContent = original; }, 2200);
+        if (window.gtag) gtag('event','share',{method:'copy',page:location.pathname});
+      });
+    }
+  });
+})();
+</script>
 <div class="wrap"><svg class="canopy-rule" viewBox="0 0 1200 26" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 25C120 25 150 4 240 4s120 21 240 21 120-21 240-21 120 21 240 21 120-21 240-21" stroke="currentColor" stroke-width="1.5"/></svg></div>
 <section class="bg-green"><div class="wrap">
 <div style="text-align:center;max-width:60ch;margin:0 auto">
@@ -1023,7 +1070,18 @@ a.card:hover::before{transform:translateX(0)}
 </div>
 <div class="ftr-bot">
   <span>&copy; 2026 Ozark of Austin Tree Service. Kyle, Texas.</span>
-  <span><a href="https://www.facebook.com/ozarkofaustin" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://instagram.com/oatreeservice" target="_blank" rel="noopener">Instagram</a></span>
+  <span class="social">
+    <a href="https://www.facebook.com/ozarkofaustin" target="_blank" rel="noopener" aria-label="Ozark of Austin on Facebook" title="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>
+    </a>
+    <a href="https://instagram.com/oatreeservice" target="_blank" rel="noopener" aria-label="Ozark of Austin on Instagram" title="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.9" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </span>
 </div></div></footer>
 <div class="callbar">
   <a href="tel:+15125463576"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 005.5 5.5L16 12l4 1.5v3a2 2 0 01-2.2 2A16 16 0 014.5 5.2A2 2 0 016.5 3z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>Call Bramel</a>
