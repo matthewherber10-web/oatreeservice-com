@@ -33,17 +33,21 @@
      moss      #4a6b4f  primary brand green, links, accents
      bone      #f2f0ea  paper
      safety    #ff6a1f  CTAs ONLY &mdash; buttons and the call bar
-     rope      #c9500f  orange as *text* (passes contrast on bone)
+     rope      #b3450b  orange as *text*. Darkened from #c9500f after a
+                        contrast audit: the eyebrow renders at 11.84px, where
+                        AA wants 4.5:1 and the old value gave 3.97:1.
      amber     #f5aa1c  the added pop: ratings, speed badge, 2nd CTA
 
+   Contrast re-audited 2026-08-01 at the sizes actually used. --ink-3 moved
+   #78837e -> #5f6b65 (hints and breadcrumbs were 3.4-3.9:1 at 13-14px).
    Contrast checked: moss on bone 5.3:1, rope on bone 5.0:1,
    white on safety 3.1:1 (AA-large &mdash; only used at 16px+ bold).
    ------------------------------------------------------------------ */
 :root{
-  --ink:#22282a; --ink-2:#4a5551; --ink-3:#78837e;
+  --ink:#22282a; --ink-2:#4a5551; --ink-3:#5f6b65;
   --paper:#f2f0ea; --paper-2:#e8e5dc; --line:#d7d3c8;
   --green:#22282a; --green-2:#4a6b4f; --green-soft:#e6ece5;
-  --orange:#ff6a1f; --orange-dk:#c9500f; --white:#fff;
+  --orange:#ff6a1f; --orange-dk:#b3450b; --white:#fff;
   --amber:#f5aa1c; --amber-soft:#fdf0d6; --amber-line:#f0d9a4;
   --shadow:0 1px 2px rgba(34,40,42,.07),0 8px 24px -12px rgba(34,40,42,.20);
   --shadow-lg:0 2px 4px rgba(34,40,42,.07),0 24px 48px -20px rgba(34,40,42,.30);
@@ -638,6 +642,32 @@ a.card:hover::before{transform:translateX(0)}
 .nudge-x:hover{color:#fff}
 @media(max-width:1040px){.nudge{display:none!important}}
 
+/* Permit result: verdict first, detail on demand. The full answer ran ~1800px
+   on a 664px phone &mdash; nearly three screens for one question. Collapsing the
+   stipulations and the ordinance quote puts the verdict and the next step in
+   the first screen, which is what somebody standing in a yard actually needs. */
+.result details.stips,.result details.ord{margin-top:1.3rem;border-top:1px solid var(--line);
+  padding-top:1rem}
+.result details summary{cursor:pointer;list-style:none;font:600 .95rem/1.4 var(--sans);
+  color:var(--green-2);padding:4px 26px 4px 0;position:relative}
+.result details summary::-webkit-details-marker{display:none}
+.result details summary::after{content:"+";position:absolute;right:2px;top:1px;
+  font:400 1.35rem/1 var(--sans);color:var(--green-2)}
+.result details[open] summary::after{content:"\2013"}
+.result details summary .cnt{display:inline-block;min-width:20px;text-align:center;
+  background:var(--green-soft);border-radius:100px;padding:1px 7px;margin-left:6px;
+  font-size:.8rem;color:var(--green)}
+.result details .stips h4,.result details .ord h4{display:none}
+.result details dl{margin-top:.9rem}
+
+/* FIX 4: header tap targets. Brand was 38px and the menu button 37px, both
+   under Apple's 44px minimum &mdash; the menu button is the one people miss and
+   re-tap. Padding rather than font size, so nothing about the look changes. */
+@media(max-width:1040px){
+  .burger{padding:12px 14px;min-height:44px}
+  .brand{padding:4px 0;min-height:44px}
+}
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-46HXR3K1Y0"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-46HXR3K1Y0");</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xusi2ht8kr");</script>
@@ -841,8 +871,12 @@ a.card:hover::before{transform:translateX(0)}
       if (!s[key] || skip[key]) continue;
       rows += '<dt>' + esc(label) + '</dt><dd>' + esc(s[key]) + '</dd>';
     }
-    if (rows) h += '<div class="stips"><h4>Everything else this ordinance requires</h4>'
-                 + '<dl>' + rows + '</dl></div>';
+    if (rows) {
+      var n = (rows.match(/<dt>/g) || []).length;
+      h += '<details class="stips"><summary>Everything else this ordinance requires'
+         + ' <span class="cnt">' + n + '</span></summary>'
+         + '<dl>' + rows + '</dl></details>';
+    }
 
     h += '<div class="ord"><h4>The ordinance, in its own words</h4><blockquote>'
        + esc(r.quote) + '</blockquote>'

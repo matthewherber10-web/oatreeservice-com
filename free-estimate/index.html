@@ -33,17 +33,21 @@
      moss      #4a6b4f  primary brand green, links, accents
      bone      #f2f0ea  paper
      safety    #ff6a1f  CTAs ONLY &mdash; buttons and the call bar
-     rope      #c9500f  orange as *text* (passes contrast on bone)
+     rope      #b3450b  orange as *text*. Darkened from #c9500f after a
+                        contrast audit: the eyebrow renders at 11.84px, where
+                        AA wants 4.5:1 and the old value gave 3.97:1.
      amber     #f5aa1c  the added pop: ratings, speed badge, 2nd CTA
 
+   Contrast re-audited 2026-08-01 at the sizes actually used. --ink-3 moved
+   #78837e -> #5f6b65 (hints and breadcrumbs were 3.4-3.9:1 at 13-14px).
    Contrast checked: moss on bone 5.3:1, rope on bone 5.0:1,
    white on safety 3.1:1 (AA-large &mdash; only used at 16px+ bold).
    ------------------------------------------------------------------ */
 :root{
-  --ink:#22282a; --ink-2:#4a5551; --ink-3:#78837e;
+  --ink:#22282a; --ink-2:#4a5551; --ink-3:#5f6b65;
   --paper:#f2f0ea; --paper-2:#e8e5dc; --line:#d7d3c8;
   --green:#22282a; --green-2:#4a6b4f; --green-soft:#e6ece5;
-  --orange:#ff6a1f; --orange-dk:#c9500f; --white:#fff;
+  --orange:#ff6a1f; --orange-dk:#b3450b; --white:#fff;
   --amber:#f5aa1c; --amber-soft:#fdf0d6; --amber-line:#f0d9a4;
   --shadow:0 1px 2px rgba(34,40,42,.07),0 8px 24px -12px rgba(34,40,42,.20);
   --shadow-lg:0 2px 4px rgba(34,40,42,.07),0 24px 48px -20px rgba(34,40,42,.30);
@@ -638,6 +642,32 @@ a.card:hover::before{transform:translateX(0)}
 .nudge-x:hover{color:#fff}
 @media(max-width:1040px){.nudge{display:none!important}}
 
+/* Permit result: verdict first, detail on demand. The full answer ran ~1800px
+   on a 664px phone &mdash; nearly three screens for one question. Collapsing the
+   stipulations and the ordinance quote puts the verdict and the next step in
+   the first screen, which is what somebody standing in a yard actually needs. */
+.result details.stips,.result details.ord{margin-top:1.3rem;border-top:1px solid var(--line);
+  padding-top:1rem}
+.result details summary{cursor:pointer;list-style:none;font:600 .95rem/1.4 var(--sans);
+  color:var(--green-2);padding:4px 26px 4px 0;position:relative}
+.result details summary::-webkit-details-marker{display:none}
+.result details summary::after{content:"+";position:absolute;right:2px;top:1px;
+  font:400 1.35rem/1 var(--sans);color:var(--green-2)}
+.result details[open] summary::after{content:"\2013"}
+.result details summary .cnt{display:inline-block;min-width:20px;text-align:center;
+  background:var(--green-soft);border-radius:100px;padding:1px 7px;margin-left:6px;
+  font-size:.8rem;color:var(--green)}
+.result details .stips h4,.result details .ord h4{display:none}
+.result details dl{margin-top:.9rem}
+
+/* FIX 4: header tap targets. Brand was 38px and the menu button 37px, both
+   under Apple's 44px minimum &mdash; the menu button is the one people miss and
+   re-tap. Padding rather than font size, so nothing about the look changes. */
+@media(max-width:1040px){
+  .burger{padding:12px 14px;min-height:44px}
+  .brand{padding:4px 0;min-height:44px}
+}
+
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-46HXR3K1Y0"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-46HXR3K1Y0");</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xusi2ht8kr");</script>
@@ -671,34 +701,34 @@ a.card:hover::before{transform:translateX(0)}
 <form class="form quoteform" id="qf" novalidate data-action="https://formsubmit.co/ajax/ozarkofaustin@gmail.com" data-source="free_estimate_page">
   <div class="field">
     <label for="qf-name">Your name</label>
-    <input type="text" id="qf-name" name="name" autocomplete="name"
+    <input type="text" id="qf-name" name="name" aria-describedby="e-name" autocomplete="name"
            autocapitalize="words" required>
-    <p class="err" id="e-name" hidden>I need something to call you.</p>
+    <p class="err" id="e-name" role="alert" hidden>I need something to call you.</p>
   </div>
 
   <div class="field">
     <label for="qf-phone">Phone number
       <span class="hint">So I can ring you back. I don&rsquo;t send marketing texts.</span></label>
-    <input type="tel" id="qf-phone" name="phone" inputmode="tel" autocomplete="tel"
+    <input type="tel" id="qf-phone" name="phone" aria-describedby="e-phone" inputmode="tel" autocomplete="tel"
            placeholder="(512) 555-0134" required>
-    <p class="err" id="e-phone" hidden>That doesn&rsquo;t look like a full phone number.</p>
+    <p class="err" id="e-phone" role="alert" hidden>That doesn&rsquo;t look like a full phone number.</p>
   </div>
 
   <div class="field">
     <label for="qf-town">Which town?</label>
-    <input type="text" id="qf-town" name="town" list="qf-towns"
+    <input type="text" id="qf-town" name="town" aria-describedby="e-town" list="qf-towns"
            placeholder="Kyle, Buda, Dripping Springs&hellip;"
            autocomplete="address-level2" autocapitalize="words" required>
     <datalist id="qf-towns"><option value="Kyle"><option value="Buda"><option value="San Marcos"><option value="Wimberley"><option value="Dripping Springs"><option value="Driftwood"><option value="Woodcreek"><option value="Mountain City"><option value="Niederwald"><option value="Uhland"><option value="Bear Creek"><option value="Austin"><option value="Manchaca"><option value="Del Valle"><option value="Creedmoor"><option value="Mustang Ridge"><option value="Sunset Valley"><option value="West Lake Hills"><option value="Rollingwood"><option value="Bee Cave"><option value="Lakeway"><option value="Manor"><option value="Pflugerville"><option value="Lockhart"><option value="Luling"><option value="Martindale"><option value="Maxwell"><option value="Dale"><option value="Bastrop"><option value="Cedar Creek"><option value="Elgin"><option value="Smithville"><option value="New Braunfels"><option value="Canyon Lake"><option value="Bulverde"><option value="Spring Branch"><option value="Garden Ridge"><option value="Seguin"><option value="Schertz"><option value="Cibolo"><option value="Marion"><option value="Staples"><option value="Round Rock"><option value="Georgetown"><option value="Cedar Park"><option value="Leander"><option value="Hutto"><option value="Blanco"><option value="Johnson City"></datalist>
-    <p class="err" id="e-town" hidden>Which town is the tree in?</p>
+    <p class="err" id="e-town" role="alert" hidden>Which town is the tree in?</p>
   </div>
 
   <div class="field">
     <label for="qf-details">What&rsquo;s going on?
       <span class="hint">A sentence is plenty. &ldquo;Big limb over the garage I don&rsquo;t
       like the look of&rdquo; tells me most of what I need.</span></label>
-    <textarea id="qf-details" name="details" rows="3" required></textarea>
-    <p class="err" id="e-details" hidden>Even a few words helps me price it.</p>
+    <textarea id="qf-details" name="details" aria-describedby="e-details" rows="3" required></textarea>
+    <p class="err" id="e-details" role="alert" hidden>Even a few words helps me price it.</p>
   </div>
 
   <div class="field">
