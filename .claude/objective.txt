@@ -1,9 +1,12 @@
-Ozark of Austin
+Ozark of Austin -- deploy folder for oatreeservice.com.
 
-Deploy folder for oatreeservice.com. This is what gets pushed live.
-Do not edit files here by hand -- they are overwritten on every build.
+Everything here is generated. Do not edit by hand; it is overwritten.
 
-Build in ../build, then:
-  rm -rf preview-deploy/* && cp -R site/. preview-deploy/
-  echo oatreeservice.com > CNAME && touch .nojekyll
-  git add -A && git commit && git push
+Build and deploy:
+  cd build && python3 build.py
+  cd .. && node qa.js            # must report 0 failing
+  rsync -a --delete --exclude .git site/ preview-deploy/
+  cd preview-deploy && git add -A && git commit && git push
+
+CNAME and .nojekyll are emitted by build.py on purpose -- the rsync
+deletes anything the build does not produce.
