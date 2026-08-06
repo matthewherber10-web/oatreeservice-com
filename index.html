@@ -711,6 +711,18 @@ a.card:hover::before{transform:translateX(0)}
 
 /* ---------- estimate builder (internal) ---------- */
 .estform .chk{margin-bottom:6px}
+/* good/better/best option cards */
+.tiers{display:grid;gap:16px}
+.tier{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+.tier-hd{padding:14px 18px;background:var(--bone);border-bottom:1px solid var(--line)}
+.tier-hd .chk{margin:0;font-weight:600}
+.tier-hd em{font-style:normal;color:var(--ink-3);font-weight:400}
+.tier-bd{padding:18px}
+.tier.is-off{opacity:.5}
+.tier.is-off .tier-bd{display:none}
+.tier.is-pick{border-color:var(--green-2);border-width:2px}
+.tier.is-pick .tier-hd{background:var(--green-soft)}
+
 /* photo thumbnails */
 .ph-list{display:grid;gap:14px;margin-top:16px;
   grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
@@ -832,19 +844,21 @@ a.card:hover::before{transform:translateX(0)}
   </div>
 </div></section>
 
+
 <section><div class="wrap">
   <div class="note warn">
-    <h3>If you own an oak, read this before you cut anything</h3>
-    <p>Texas A&amp;M Forest Service says don't prune oaks between
-    <strong>February 1 and June 30</strong>. Sap beetles carrying oak wilt spores are
-    active then, and a fresh cut is exactly how a new infection center starts. That's
-    five months a year when the honest answer is &ldquo;wait until fall.&rdquo;</p>
-    <p>That's for routine work. A genuine hazard is different &mdash; storm damage or a
-    cracked limb gets dealt with when it happens, with the fewest cuts possible and every
-    wound painted on the spot. I carry paint year-round.
-    <a href="oak-wilt/">The whole thing, including how to tell if you already have it.</a></p>
+    <h3>Good time to get oak pruning done</h3>
+    <p>We're outside the oak wilt window, so routine oak pruning is on the table
+    right now &mdash; Texas A&amp;M Forest Service's don't-prune window runs
+    <strong>February 1 through June 30</strong> each year, and we're clear of it
+    until next February.</p>
+    <p>If it's a genuine hazard instead, that gets handled immediately any time of
+    year, fewest cuts possible, every wound painted on the spot.
+    <a href="tel:+15125463576">Call (512) 546-3576</a> or
+    <a href="oak-wilt/">read the whole thing first</a>.</p>
   </div>
 </div></section>
+
 
 <section class="bg-2"><div class="wrap">
 <p class="eyebrow">5.0 on Google</p>

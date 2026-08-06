@@ -711,6 +711,18 @@ a.card:hover::before{transform:translateX(0)}
 
 /* ---------- estimate builder (internal) ---------- */
 .estform .chk{margin-bottom:6px}
+/* good/better/best option cards */
+.tiers{display:grid;gap:16px}
+.tier{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+.tier-hd{padding:14px 18px;background:var(--bone);border-bottom:1px solid var(--line)}
+.tier-hd .chk{margin:0;font-weight:600}
+.tier-hd em{font-style:normal;color:var(--ink-3);font-weight:400}
+.tier-bd{padding:18px}
+.tier.is-off{opacity:.5}
+.tier.is-off .tier-bd{display:none}
+.tier.is-pick{border-color:var(--green-2);border-width:2px}
+.tier.is-pick .tier-hd{background:var(--green-soft)}
+
 /* photo thumbnails */
 .ph-list{display:grid;gap:14px;margin-top:16px;
   grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
@@ -889,19 +901,25 @@ a.card:hover::before{transform:translateX(0)}
   </form>
   </div>
 
+  
   <div class="toolcard" style="margin-top:2.4rem"><div class="toolcard-hd">
-    <p class="k">Step 2</p><p class="t">The number</p>
-    <p class="s">Suggested from the answers above. Change it to whatever you want &mdash;
-    what you type is what goes on the estimate.</p>
+    <p class="k">Step 2</p><p class="t">The options</p>
+    <p class="s">Give people something to choose between. One price is a yes-or-no;
+    three is a &ldquo;which one&rdquo;. Switch off any you don&rsquo;t want &mdash;
+    one option on its own works fine.</p>
   </div></div>
 
   <div class="toolcard toolcard-body">
-    <div id="ef-calc" class="result tone-ask" style="margin:0 0 1.4rem"></div>
+    <div id="ef-calc" class="result tone-ask" style="margin:0 0 1.6rem"></div>
+    <div id="et-list" class="tiers"></div>
+  </div>
+
+  <div class="toolcard" style="margin-top:2.4rem"><div class="toolcard-hd">
+    <p class="k">Step 3</p><p class="t">Who it&rsquo;s for</p>
+  </div></div>
+
+  <div class="toolcard toolcard-body">
     <form class="form estform">
-      <div class="field">
-        <label for="ef-price">Price to quote ($)</label>
-        <input type="number" id="ef-price" inputmode="decimal" step="10">
-      </div>
       <div class="field">
         <label for="ef-cust">Customer name</label>
         <input type="text" id="ef-cust" autocapitalize="words">
@@ -910,12 +928,24 @@ a.card:hover::before{transform:translateX(0)}
         <label for="ef-addr">Address or town</label>
         <input type="text" id="ef-addr" autocapitalize="words">
       </div>
+      <div class="field">
+        <label for="ef-when">When you could start
+          <span class="hint">Goes on the estimate as an offer of a date. Asking closes
+          jobs that &ldquo;let me know&rdquo; loses. Leave it blank to skip.</span></label>
+        <input type="text" id="ef-when" placeholder="e.g. Thursday morning">
+      </div>
+      <div class="field">
+        <label class="chk"><input type="checkbox" id="ef-remote"><span>Priced from photos,
+        not seen in person &mdash; adds a line saying the price is confirmed on
+        arrival</span></label>
+      </div>
     </form>
   </div>
 
+
   
   <div class="toolcard" style="margin-top:2.4rem"><div class="toolcard-hd">
-    <p class="k">Step 3</p><p class="t">Photos</p>
+    <p class="k">Step 4</p><p class="t">Photos</p>
     <p class="s">Take a picture, then circle what you mean. A customer who can see the
     limb you&rsquo;re talking about argues about the price a lot less.</p>
   </div></div>
@@ -945,7 +975,7 @@ a.card:hover::before{transform:translateX(0)}
 
   
   <div class="toolcard" style="margin-top:2.4rem"><div class="toolcard-hd">
-    <p class="k">Step 4</p><p class="t">Send it</p>
+    <p class="k">Step 5</p><p class="t">Send it</p>
     <p class="s">The PDF saves to your phone &mdash; then text or email it straight from
     there. Everything stays on this device.</p>
   </div></div>
@@ -976,6 +1006,9 @@ a.card:hover::before{transform:translateX(0)}
   var f = $('ef');
 
   function money(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+  function esc(t){ return String(t == null ? '' : t)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;'); }
 
   function showFor(svc){
     document.querySelectorAll('[data-for]').forEach(function(el){
@@ -1049,19 +1082,22 @@ a.card:hover::before{transform:translateX(0)}
       // Prefill the TOP of the range, not the middle. Tradespeople systematically
       // underprice, and it is far easier to come down in front of a customer than
       // to go up. He can type anything he likes over it.
-      if (!$('ef-price').dataset.touched) $('ef-price').value = Math.round(hi / 10) * 10;
+      fillTierPrices(Math.round(hi / 10) * 10);
     } else {
       el.innerHTML = '<h3>Type your price below</h3><p>' + lines[0] + '</p>';
       // clear any figure carried over from the previous service, otherwise a
       // stump job inherits the last haul-off number
-      if (!$('ef-price').dataset.touched) $('ef-price').value = '';
+      fillTierPrices(0);
     }
   }
 
   f.addEventListener('input', calc);
-  f.addEventListener('change', function(){ showFor($('ef-service').value); calc(); });
-  $('ef-price').addEventListener('input', function(){ this.dataset.touched = '1'; });
-  showFor('trim'); calc();
+  f.addEventListener('change', function(){
+    showFor($('ef-service').value); tierDefaults(); calc();
+  });
+  // init deliberately runs at the very bottom: TIERS and BASE_INC are `var`
+  // declarations inside TIER_JS, so they hoist as undefined and calling this
+  // any earlier throws before a single option renders.
 
   // --- the document ---------------------------------------------------------
   function today(){
@@ -1074,29 +1110,32 @@ a.card:hover::before{transform:translateX(0)}
   }
 
   function plainText(){
-    var price = +$('ef-price').value || 0;
-    return [
-      P.name.toUpperCase(),
-      P.phone,
-      '',
+    var opts = activeTiers(), L = [];
+    L.push(P.name.toUpperCase(), P.phone, '',
       'ESTIMATE for ' + ($('ef-cust').value || 'you'),
-      ($('ef-addr').value ? $('ef-addr').value : ''),
-      today(),
-      '',
-      'WORK:',
-      ($('ef-notes').value || '(describe the work)'),
-      '',
-      'PRICE: ' + money(price),
-      '',
-      'Includes hauling everything away. Want the logs for firewood? Say so',
-      'before we start and we\u2019ll stack them.',
-      '',
+      ($('ef-addr').value ? $('ef-addr').value : ''), today(), '',
+      'WORK:', ($('ef-notes').value || '(describe the work)'), '');
+    if (opts.length > 1) {
+      opts.forEach(function(t, i){
+        L.push((i + 1) + '. ' + t.name + ' \u2014 ' + money(t.price));
+        t.inc.forEach(function(l){ if (l.trim()) L.push('   - ' + l.trim()); });
+      });
+    } else if (opts.length === 1) {
+      L.push('PRICE: ' + money(opts[0].price));
+    }
+    L.push('');
+    if ($('ef-when').value)
+      L.push('I could start ' + $('ef-when').value + ' if that suits you.', '');
+    L.push('Includes hauling everything away. Want the logs for firewood? Say so',
+      'before we start and we\u2019ll stack them.', '',
       'Fully insured. Certificate available on request.',
-      'Good until ' + validUntil() + '.',
-      '',
-      'Questions, or want to book it in \u2014 call or text ' + P.phone + '.',
-      '\u2014 ' + P.owner
-    ].filter(function(l, i, a){ return !(l === '' && a[i-1] === ''); }).join('\n');
+      'Good until ' + validUntil() + '.', '');
+    if ($('ef-remote').checked)
+      L.push('Priced from your photos \u2014 I\u2019ll confirm it in person before we',
+             'start, and if it comes in cheaper you pay the cheaper number.', '');
+    L.push('Questions, or want to book it in \u2014 call or text ' + P.phone + '.',
+      '\u2014 ' + P.owner);
+    return L.filter(function(l, i, a){ return !(l === '' && a[i-1] === ''); }).join('\n');
   }
 
   $('ef-copy').addEventListener('click', function(){
@@ -1106,6 +1145,86 @@ a.card:hover::before{transform:translateX(0)}
       setTimeout(function(){ b.textContent = 'Copy as a text message'; }, 2500);
     });
   });
+
+
+// ---------------------------------------------------------------- tiers
+// What each option says it includes. These are the words that go on the PDF,
+// so they are written the way he would say them, not as line items.
+var BASE_INC = {
+  trim:     ['Deadwood out, weight off the long limbs, clearance back over the roof.'],
+  removal:  ['Taken down in sections and roped out — nothing dropped where it can '
+           + 'do damage.'],
+  hazard:   ['The dangerous part dealt with first, then the rest made safe.'],
+  clearing: ['Cleared and mulched down in place.'],
+  haul:     ['Loaded up and hauled off.'],
+  stump:    ['Ground out below grade.']
+};
+var HAUL_LINE = 'Everything hauled away and the ground raked off behind us.';
+var ADD_2 = 'Stump ground out below grade and the hole backfilled with the grindings.';
+var ADD_3 = 'Deadwood taken out of the other trees while the chipper is already here.';
+
+var TIERS = [
+  {on:true,  name:'The work itself',        price:0, inc:[], touched:false},
+  {on:true,  name:'Tidy the whole job up',  price:0, inc:[], touched:false},
+  // all three on by default: the top option is the highest-margin work he
+  // will ever quote (he is already mobilised) and the easiest yes a customer
+  // gives. Defaulting it off means it quietly never gets offered.
+  {on:true,  name:'Sort the property out',  price:0, inc:[], touched:false}
+];
+
+function tierDefaults(){
+  var svc = $('ef-service').value;
+  var base = (BASE_INC[svc] || []).slice();
+  base.push(HAUL_LINE);
+  TIERS[0].inc = base.slice();
+  TIERS[1].inc = base.concat([ADD_2]);
+  TIERS[2].inc = base.concat([ADD_2, ADD_3]);
+}
+
+function renderTiers(){
+  var mid = TIERS[1].on;   // the middle option is the one to favour
+  $('et-list').innerHTML = TIERS.map(function(t, i){
+    return '<div class="tier' + (t.on ? '' : ' is-off') + (i===1 && mid ? ' is-pick' : '') + '">'
+      + '<div class="tier-hd">'
+      +   '<label class="chk"><input type="checkbox" class="et-on" data-i="' + i + '"'
+      +     (t.on ? ' checked' : '') + '><span>Option ' + (i+1)
+      +     (i===1 ? ' <em>&mdash; most people take this one</em>' : '') + '</span></label>'
+      + '</div>'
+      + '<div class="tier-bd">'
+      +   '<div class="field"><label for="et-n' + i + '">Call it</label>'
+      +     '<input type="text" id="et-n' + i + '" class="et-name" data-i="' + i + '" value="'
+      +     esc(t.name) + '"></div>'
+      +   '<div class="field"><label for="et-p' + i + '">Price ($)</label>'
+      +     '<input type="number" id="et-p' + i + '" class="et-price" data-i="' + i
+      +     '" inputmode="decimal" step="10" value="' + (t.price || '') + '"></div>'
+      +   '<div class="field"><label for="et-i' + i + '">What they get'
+      +     '<span class="hint">One line each. This is what sells it.</span></label>'
+      +     '<textarea id="et-i' + i + '" class="et-inc" data-i="' + i + '" rows="4">'
+      +     esc(t.inc.join('\n')) + '</textarea></div>'
+      + '</div></div>';
+  }).join('');
+}
+
+$('et-list').addEventListener('change', function(e){
+  var on = e.target.closest('.et-on');
+  if (on){ TIERS[+on.dataset.i].on = on.checked; renderTiers(); }
+});
+$('et-list').addEventListener('input', function(e){
+  var t = e.target, i = +t.dataset.i;
+  if (t.classList.contains('et-name'))  TIERS[i].name = t.value;
+  if (t.classList.contains('et-inc'))   TIERS[i].inc = t.value.split('\n');
+  if (t.classList.contains('et-price')){ TIERS[i].price = +t.value || 0; TIERS[i].touched = true; }
+});
+
+// Fill the tier prices from the calculator. Options 2 and 3 start at the same
+// number rather than a guessed uplift &mdash; there is no agreed price for stump
+// grinding yet, and inventing a multiplier here would misprice real jobs.
+function fillTierPrices(v){
+  for (var i = 0; i < 3; i++) if (!TIERS[i].touched) TIERS[i].price = v;
+  renderTiers();
+}
+
+function activeTiers(){ return TIERS.filter(function(t){ return t.on && t.price > 0; }); }
 
 
 // ---------------------------------------------------------------- storage
@@ -1285,8 +1404,11 @@ function makePDF(save){
   var W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight();
   var M = 48, y = M;
 
-  var price = +document.getElementById('ef-price').value || 0;
+  var opts  = activeTiers();
+  var price = opts.length ? opts[0].price : 0;
   var cust  = document.getElementById('ef-cust').value || '';
+  var when  = document.getElementById('ef-when').value || '';
+  var remote = document.getElementById('ef-remote').checked;
   var addr  = document.getElementById('ef-addr').value || '';
   var notes = document.getElementById('ef-notes').value || '';
   var today = new Date();
@@ -1331,15 +1453,49 @@ function makePDF(save){
   lines.forEach(function(l){ room(18); doc.text(l, M, y); y += 17; });
   y += 14;
 
-  // --- price: the thing they look for first -------------------------------
-  room(76);
-  doc.setFillColor(246,244,238); doc.rect(M, y, W - M*2, 62, 'F');
-  doc.setFillColor(255,106,31); doc.rect(M, y, 4, 62, 'F');
-  doc.setTextColor(120,131,126); doc.setFontSize(8.5); doc.setFont('helvetica','bold');
-  doc.text('TOTAL', M + 18, y + 24);
-  doc.setTextColor(34,40,42); doc.setFontSize(28); doc.setFont('helvetica','bold');
-  doc.text(money(price), M + 18, y + 50);
-  y += 86;
+  // --- the options: the thing they look for first -------------------------
+  // One price is a yes/no question. Several make it a which-one, and the
+  // middle card is drawn to be the obvious answer.
+  var many = opts.length > 1;
+  if (many){
+    doc.setTextColor(120,131,126); doc.setFontSize(8.5); doc.setFont('helvetica','bold');
+    doc.text('YOUR OPTIONS', M, y); y += 16;
+  }
+  opts.forEach(function(t, i){
+    var pick = many && i === 1;
+    var incs = t.inc.filter(function(l){ return l.trim(); });
+    var wrapped = [];
+    incs.forEach(function(l){
+      wrapped = wrapped.concat(doc.splitTextToSize('•  ' + l, W - M*2 - 40));
+    });
+    var boxH = 62 + wrapped.length * 13 + (incs.length ? 10 : 0);
+    room(boxH + 16);
+
+    doc.setFillColor(pick ? 242 : 249, pick ? 246 : 248, pick ? 240 : 246);
+    doc.rect(M, y, W - M*2, boxH, 'F');
+    doc.setFillColor(pick ? 74 : 200, pick ? 107 : 205, pick ? 79 : 200);
+    doc.rect(M, y, pick ? 5 : 3, boxH, 'F');
+
+    doc.setTextColor(120,131,126); doc.setFontSize(8); doc.setFont('helvetica','bold');
+    doc.text(pick ? 'OPTION ' + (i+1) + '  ·  MOST PEOPLE TAKE THIS ONE'
+                  : 'OPTION ' + (i+1), M + 18, y + 20);
+    doc.setTextColor(34,40,42); doc.setFont('helvetica','bold');
+    doc.setFontSize(pick ? 13 : 12);
+    doc.text(t.name, M + 18, y + 38);
+    doc.setFontSize(pick ? 23 : 20);
+    doc.text(money(t.price), W - M - 18, y + 38, {align:'right'});
+
+    doc.setTextColor(74,85,81); doc.setFontSize(9.5); doc.setFont('helvetica','normal');
+    var ly = y + 56;
+    wrapped.forEach(function(l){ doc.text(l, M + 18, ly); ly += 13; });
+    y += boxH + 14;
+  });
+  if (!opts.length){
+    room(40);
+    doc.setTextColor(150,158,154); doc.setFontSize(11); doc.setFont('helvetica','normal');
+    doc.text('Price to follow.', M, y + 14); y += 40;
+  }
+  y += 4;
 
   // --- photos: the reason this document works -----------------------------
   if (PHOTOS.length){
@@ -1378,11 +1534,14 @@ function makePDF(save){
   doc.setTextColor(120,131,126); doc.setFontSize(8.5); doc.setFont('helvetica','bold');
   doc.text('WHAT THIS INCLUDES', M, y); y += 16;
   doc.setTextColor(74,85,81); doc.setFontSize(10.5); doc.setFont('helvetica','normal');
-  [ 'Hauling everything away is included. Want the logs kept for firewood? Say so before we start and we will stack them rather than chip them.',
-    'Fully insured. Certificate available on request.',
-    'This price holds until ' + fmt(until) + '.',
-    'If we find something once we are into the job that changes the price, we discuss it with you first. No surprises at the end.'
-  ].forEach(function(t){
+  var terms = [];
+  if (when) terms.push('I could start ' + when + ' if that suits you — just say the word and I will hold it.');
+  terms.push('Hauling everything away is included. Want the logs kept for firewood? Say so before we start and we will stack them rather than chip them.');
+  terms.push('Fully insured. Certificate available on request.');
+  terms.push('This price holds until ' + fmt(until) + '.');
+  if (remote) terms.push('This was priced from photographs. I will confirm it in person before any work starts, and if it is cheaper than this you pay the cheaper number.');
+  terms.push('If we find something once we are into the job that changes the price, we discuss it with you first. No surprises at the end.');
+  terms.forEach(function(t){
     var ls = doc.splitTextToSize('•  ' + t, W - M*2 - 8);
     ls.forEach(function(l){ room(16); doc.text(l, M, y); y += 14; });
     y += 5;
@@ -1419,7 +1578,10 @@ function currentRecord(){
     id: (window.__editingId || Date.now()),
     when: Date.now(),
     service: document.getElementById('ef-service').value,
-    price: +document.getElementById('ef-price').value || 0,
+    tiers: JSON.parse(JSON.stringify(TIERS)),
+    when: document.getElementById('ef-when').value || '',
+    remote: document.getElementById('ef-remote').checked,
+    price: (activeTiers()[0] || {price:0}).price,
     cust: document.getElementById('ef-cust').value || '',
     addr: document.getElementById('ef-addr').value || '',
     notes: document.getElementById('ef-notes').value || '',
@@ -1471,8 +1633,11 @@ document.getElementById('ef-saved').addEventListener('click', function(e){
       if (!r) return;
       window.__editingId = r.id;
       document.getElementById('ef-service').value = r.service;
-      document.getElementById('ef-price').value = r.price;
-      document.getElementById('ef-price').dataset.touched = '1';
+      showFor(r.service);
+      if (r.tiers){ TIERS.length = 0; r.tiers.forEach(function(t){ TIERS.push(t); }); }
+      renderTiers();
+      document.getElementById('ef-when').value = r.when || '';
+      document.getElementById('ef-remote').checked = !!r.remote;
       document.getElementById('ef-cust').value = r.cust;
       document.getElementById('ef-addr').value = r.addr;
       document.getElementById('ef-notes').value = r.notes;
@@ -1488,14 +1653,18 @@ document.getElementById('ef-save').addEventListener('click', function(){ saveNow
 document.getElementById('ef-new').addEventListener('click', function(){
   if (!confirm('Start a new estimate? Save this one first if you need it.')) return;
   window.__editingId = null;
-  ['ef-cust','ef-addr','ef-notes','ef-price'].forEach(function(id){ document.getElementById(id).value = ''; });
-  document.getElementById('ef-price').dataset.touched = '';
+  ['ef-cust','ef-addr','ef-notes','ef-when'].forEach(function(id){ document.getElementById(id).value = ''; });
+  document.getElementById('ef-remote').checked = false;
+  TIERS.forEach(function(t){ t.price = 0; t.touched = false; });
+  tierDefaults(); calc();
   PHOTOS = []; renderPhotos();
   window.scrollTo({top:0, behavior:'smooth'});
 });
 
 listSaved();
 
+
+  showFor('trim'); tierDefaults(); calc();
 })();
 </script>
 </main>
