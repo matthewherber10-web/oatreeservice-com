@@ -684,7 +684,10 @@ a.card:hover::before{transform:translateX(0)}
 .riskform legend{font:600 .95rem/1.4 var(--sans);margin-bottom:10px;padding:0}
 .riskform legend .hint{display:block;font-weight:400;color:var(--ink-3);
   font-size:.86rem;margin-top:4px}
-.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-bottom:7px;
+/* label.chk, not .chk: `.field label{display:block}` at line ~179 has equal
+   specificity and comes first, so a bare .chk lost the flex layout and every
+   checkbox on the site was rendering with its text jammed into the box. */
+label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-bottom:7px;
   background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-sm);
   cursor:pointer;min-height:44px}
 .chk:hover{border-color:var(--green-2)}
@@ -711,6 +714,92 @@ a.card:hover::before{transform:translateX(0)}
 
 /* ---------- estimate builder (internal) ---------- */
 .estform .chk{margin-bottom:6px}
+/* ---------- the customer's estimate view (/estimate/) ---------- */
+.ev-state{max-width:36rem;margin:0 auto;padding:5rem 1.4rem;text-align:center}
+.ev-state h1,.ev-failh{font:600 clamp(1.5rem,4vw,2rem)/1.2 var(--serif);
+  margin:0 0 .6rem;color:var(--ink)}
+.ev-state p{color:var(--ink-2);margin:0 0 .8rem}
+.ev-fail-btns,.ev-close-btns{display:flex;gap:10px;justify-content:center;
+  flex-wrap:wrap;margin-top:1.6rem}
+.ev-spinner{width:34px;height:34px;margin:0 auto 1.2rem;border-radius:50%;
+  border:3px solid var(--line);border-top-color:var(--green-2);
+  animation:evspin .8s linear infinite}
+@keyframes evspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ev-spinner{animation-duration:2.4s}}
+
+.ev-hero{background:var(--ink);color:#fff;padding:clamp(2.6rem,7vw,4.4rem) 0}
+.ev-eyebrow{font:600 .74rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 1rem}
+.ev-hero h1{font-size:clamp(1.9rem,5.4vw,3rem);margin:0;color:#fff;line-height:1.1}
+.ev-sub{margin:.9rem 0 0;color:#c3ccc7;font-size:1.05rem}
+.ev-sec{padding:clamp(2.2rem,5vw,3.4rem) 0;border-bottom:1px solid var(--line)}
+.ev-wrap{max-width:46rem}
+.ev-h{font-size:clamp(1.15rem,2.6vw,1.5rem);margin:0 0 1rem}
+.ev-work{font-size:1.12rem;line-height:1.7;margin:0;white-space:pre-wrap}
+.ev-note{color:var(--ink-3);font-size:.95rem;margin:.9rem 0 0}
+
+.ev-trust{background:var(--paper-2);border-bottom:1px solid var(--line)}
+.ev-trust ul{display:flex;flex-wrap:wrap;gap:8px 30px;list-style:none;margin:0;
+  padding:15px 0;font-size:.93rem;color:var(--ink-2);justify-content:center}
+
+/* the one line that actually sells the job */
+.ev-why{margin-top:1.4rem;padding:18px 20px;background:var(--amber-soft);
+  border:1px solid var(--amber-line);border-left:4px solid var(--amber);
+  border-radius:var(--r-sm)}
+.ev-why p{margin:0;font-size:1.06rem;line-height:1.6;color:var(--ink)}
+
+.ev-grid{display:grid;gap:18px;margin-top:1.2rem;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.ev-fig{margin:0}
+.ev-shot{padding:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  background:none;cursor:zoom-in;display:block;width:100%;
+  transition:transform .16s ease,box-shadow .16s ease}
+.ev-shot:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.ev-shot img{display:block;width:100%;height:auto}
+.ev-fig figcaption{margin-top:.6rem;font-size:.93rem;color:var(--ink-2);line-height:1.5}
+
+.ev-steps{margin:0;padding-left:1.3em;color:var(--ink-2);font-size:1.02rem}
+.ev-steps li{margin-bottom:1em;line-height:1.6;padding-left:.2em}
+.ev-steps strong{color:var(--ink)}
+
+.ev-opts{display:grid;gap:16px}
+.ev-opt{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:#fff;
+  position:relative}
+.ev-opt.is-pick{border:2px solid var(--green-2);background:var(--green-soft)}
+.ev-flag{position:absolute;top:-11px;left:20px;margin:0;background:var(--green-2);color:#fff;
+  font:600 .68rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 11px;border-radius:999px}
+.ev-opt-hd{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  flex-wrap:wrap}
+.ev-opt-hd h3{margin:0;font-size:1.2rem}
+.ev-price{margin:0;font:600 1.8rem/1 var(--serif);color:var(--ink)}
+.ev-inc{margin:1rem 0 0;padding-left:1.15em;color:var(--ink-2);font-size:.98rem}
+.ev-inc li{margin-bottom:.45em}
+.ev-take{margin-top:1.3rem;width:100%;justify-content:center}
+
+.ev-terms{margin:0;padding-left:1.15em;color:var(--ink-2);font-size:1rem}
+.ev-terms li{margin-bottom:.7em;line-height:1.6}
+.ev-close{background:var(--ink);color:#fff;padding:clamp(2.6rem,6vw,4rem) 0;text-align:center}
+.ev-close h2{color:#fff;margin:0 0 .8rem}
+.ev-close p{color:#c3ccc7;max-width:44ch;margin:0 auto}
+.ev-sig{margin-top:2rem!important;font:600 1.1rem/1.4 var(--serif);color:#fff!important}
+.ev-sig span{display:block;font:400 .9rem var(--sans);color:#9aa8a2;margin-top:4px}
+
+.ev-light{position:fixed;inset:0;z-index:999;background:rgba(10,12,13,.94);
+  display:flex;align-items:center;justify-content:center;padding:18px;cursor:zoom-out}
+.ev-light[hidden]{display:none}
+.ev-light img{max-width:100%;max-height:100%;border-radius:6px}
+.ev-light-x{position:absolute;top:12px;right:14px;width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;
+  font-size:1.6rem;line-height:1;cursor:pointer}
+
+/* the share-link panel in the builder */
+.ev-link{margin-top:1.2rem;padding:18px;border-radius:var(--r);background:var(--ink)}
+.ev-link p{margin:0 0 .7rem;color:#c3ccc7;font-size:.92rem}
+.ev-link code{display:block;padding:12px 14px;background:rgba(255,255,255,.1);
+  border-radius:8px;color:#fff;font-size:.9rem;word-break:break-all;margin-bottom:.9rem}
+.ev-link .btn-row{margin:0}
+
 /* good/better/best option cards */
 .tiers{display:grid;gap:16px}
 .tier{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
@@ -729,6 +818,9 @@ a.card:hover::before{transform:translateX(0)}
 .ph-item{margin:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
   background:#fff}
 .ph-item img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.ph-cap{width:100%;border:0;border-top:1px solid var(--line);padding:11px 12px;
+  font:400 .88rem var(--sans);color:var(--ink);background:#fff}
+.ph-cap:focus{outline:2px solid var(--green-2);outline-offset:-2px}
 .ph-item figcaption{display:flex;border-top:1px solid var(--line)}
 .ph-item button{flex:1;min-height:44px;border:0;background:none;cursor:pointer;
   font:600 .82rem var(--sans);color:var(--green);padding:0}
