@@ -728,6 +728,7 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 @media (prefers-reduced-motion:reduce){.ev-spinner{animation-duration:2.4s}}
 
 .ev-hero{background:var(--ink);color:#fff;padding:clamp(2.6rem,7vw,4.4rem) 0}
+.ev-logo{width:104px;height:auto;margin:0 0 1.4rem;opacity:.95}
 .ev-eyebrow{font:600 .74rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
   color:var(--amber);margin:0 0 1rem}
 .ev-hero h1{font-size:clamp(1.9rem,5.4vw,3rem);margin:0;color:#fff;line-height:1.1}
@@ -803,6 +804,10 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
   font-size:1.6rem;line-height:1;cursor:pointer}
 
 /* the share-link panel in the builder */
+.linkish{background:none;border:0;padding:0;font:600 .92rem var(--sans);
+  color:var(--green-2);text-decoration:underline;text-underline-offset:3px;cursor:pointer;
+  min-height:44px}
+.linkish:hover{color:var(--orange-dk)}
 .ev-link{margin-top:1.2rem;padding:18px;border-radius:var(--r);background:var(--ink)}
 .ev-link p{margin:0 0 .7rem;color:#c3ccc7;font-size:.92rem}
 .ev-link code{display:block;padding:12px 14px;background:rgba(255,255,255,.1);
@@ -816,6 +821,12 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
   .toolcard-body>.btn-row .btn,
   .ev-link .btn-row .btn{width:100%}
 }
+
+/* His actual logo. It lives where there is room for the detail to read &mdash;    the footer and the estimate documents. The compact mark stays in the header,
+   where this line art would turn to mush at 44px. */
+.ftr-logo{display:flex;justify-content:center;padding:8px 0 26px}
+.ftr-logo img{width:150px;height:auto;opacity:.92}
+@media(min-width:700px){.ftr-logo img{width:180px}}
 
 /* Bramel's way in. Small on purpose &mdash; it is for one person, and a customer
    who notices it should read it as staff-only, not as something for them. */
@@ -1056,6 +1067,10 @@ Confirm with the city before anything comes down &mdash; rules change.</p>
     <li><a href="../../tree-service/austin/neighborhoods/">Austin by neighborhood</a></li>
     <li><a href="../../tree-service/dripping-springs/">Dripping Springs</a></li>
   </ul></div>
+</div>
+<div class="ftr-logo">
+  <img src="../../img/ozark-logo-white-480.png" width="240" height="260"
+       alt="Ozark of Austin Tree Service" loading="lazy" decoding="async">
 </div>
 <div class="ftr-bot">
   <span>&copy; 2026 Ozark of Austin Tree Service. Kyle, Texas.
