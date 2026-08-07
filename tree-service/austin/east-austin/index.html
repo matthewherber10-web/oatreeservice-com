@@ -800,6 +800,37 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
   border-radius:8px;color:#fff;font-size:.9rem;word-break:break-all;margin-bottom:.9rem}
 .ev-link .btn-row{margin:0}
 
+/* his own rates panel &mdash; set once, collapsed the rest of the time */
+.ratecard{padding:0;margin-bottom:2rem}
+.ratecard>summary{list-style:none;cursor:pointer;padding:22px 24px;display:block}
+.ratecard>summary::-webkit-details-marker{display:none}
+.ratecard>summary::after{content:"Open";float:right;font:600 .82rem var(--sans);
+  color:var(--green-2);border:1px solid var(--line);border-radius:999px;padding:6px 13px}
+.ratecard[open]>summary::after{content:"Close"}
+.ratecard>summary .k{display:block;font:600 .7rem/1 var(--sans);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--orange-dk);margin-bottom:.6rem}
+.ratecard>summary .t{display:block;font:600 1.3rem/1.2 var(--serif);margin-bottom:.4rem}
+.ratecard>summary .s{display:block;font-size:.94rem;color:var(--ink-3);line-height:1.5;
+  max-width:52ch}
+.ratebody{padding:0 24px 24px}
+.rategrp{border-top:1px solid var(--line)}
+.rategrp>summary{cursor:pointer;padding:15px 0;font:600 1rem var(--sans);
+  list-style:none;min-height:52px;display:flex;align-items:center;flex-wrap:wrap;gap:0 10px}
+.rategrp>summary::-webkit-details-marker{display:none}
+.rategrp>summary::before{content:"+";font-weight:600;color:var(--green-2);
+  width:18px;display:inline-block}
+.rategrp[open]>summary::before{content:"\2212"}
+.rategrp>summary span{font:400 .88rem var(--sans);color:var(--ink-3)}
+.rategrid{display:grid;gap:14px;padding:4px 0 20px 18px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.rate label{display:block;font:600 .88rem/1.3 var(--sans);margin-bottom:6px}
+.rate .hint{display:block;font:400 .82rem/1.45 var(--sans);color:var(--ink-3);
+  margin-top:3px}
+.rate input{width:100%;padding:13px 14px;font-size:17px;border:1.5px solid var(--line);
+  border-radius:var(--r-sm);background:var(--white);color:var(--ink);min-height:50px}
+.rate input:focus{outline:2px solid var(--green-2);outline-offset:1px;
+  border-color:var(--green-2)}
+
 /* good/better/best option cards */
 .tiers{display:grid;gap:16px}
 .tier{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
