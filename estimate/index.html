@@ -1030,6 +1030,7 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 <script>
 (function(){
   var API = 'https://ozark-estimates.matthewherber10.workers.dev';
+  var MAIL = 'https://formsubmit.co/ajax/ozarkofaustin@gmail.com';
   var $ = function(id){ return document.getElementById(id); };
   function esc(t){ return String(t == null ? '' : t)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
@@ -1160,7 +1161,19 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({id: id, option: +b.dataset.opt || 0,
                                 pref: (prefBox && prefBox.value || '').slice(0, 90)})
-        });
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if (!j || !j.email) return;
+          // sent from here rather than the Worker: FormSubmit throttles by IP
+          // and Cloudflare's shared egress is permanently over its limit
+          return fetch(MAIL, {
+            method: 'POST', keepalive: true,
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify(j.email)
+          });
+        })
+        .catch(function(){ /* he still gets the text message */ });
       } catch (err) { /* never block them from saying yes */ }
       if (window.gtag) gtag('event', 'estimate_accepted',
         {estimate_id: id, option: +b.dataset.opt || 0});
