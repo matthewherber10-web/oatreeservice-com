@@ -830,6 +830,13 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 
 /* Bramel's way in. Small on purpose &mdash; it is for one person, and a customer
    who notices it should read it as staff-only, not as something for them. */
+.nav-login{color:var(--ink-3)!important;border:1px solid var(--line);border-radius:999px;
+  padding:6px 13px;font-size:.85rem!important}
+.nav-login:hover{color:var(--green-2)!important;border-color:var(--green-2)}
+@media(max-width:1040px){
+  .nav.open .nav-login{display:inline-block;align-self:flex-start;margin-top:14px;
+    border-bottom:1px solid var(--line)!important;padding:9px 15px}
+}
 .ftr-login{margin-left:14px;color:#8b9590;text-decoration:none;font-size:.86rem;
   border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 12px;
   white-space:nowrap;display:inline-block}
@@ -934,7 +941,7 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
   <a class="brand" href="../index.html"><svg width="38" height="38" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M5 34C5 13 39 13 39 34" stroke="#4a6b4f" stroke-width="3.4" stroke-linecap="round"/><path d="M11.5 34C11.5 21 32.5 21 32.5 34" stroke="#4a6b4f" stroke-width="2.3" stroke-linecap="round" opacity=".5"/><path d="M22 20.5V39" stroke="#22282a" stroke-width="3.4" stroke-linecap="round"/><circle cx="22" cy="11.5" r="5.2" stroke="#ff6a1f" stroke-width="2.6"/><path d="M22 6.3v3.1" stroke="#ff6a1f" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-txt">Ozark of Austin
     <span class="brand-sub">Tree Service &middot; Kyle, TX</span></span></a>
   <button class="burger" aria-expanded="false" aria-controls="nav" onclick="var n=document.getElementById('nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu</button>
-  <nav class="nav" id="nav"><a href="../services/" aria-current=page>Services</a><a href="../tree-permits/">Permits</a><a href="../oak-wilt/">Oak Wilt</a><a href="../what-it-costs/">Prices</a><a href="../service-area/">Service Area</a><a href="../about/">About</a></nav>
+  <nav class="nav" id="nav"><a href="../services/" aria-current=page>Services</a><a href="../tree-permits/">Permits</a><a href="../oak-wilt/">Oak Wilt</a><a href="../what-it-costs/">Prices</a><a href="../service-area/">Service Area</a><a href="../about/">About</a><a class="nav-login" href="https://ozark-estimates.matthewherber10.workers.dev/builder" rel="nofollow noopener">Log in</a></nav>
   <div class="hdr-cta">
     <a class="hdr-tel" href="tel:+15125463576">(512) 546-3576</a>
     <a class="btn btn-primary" href="../free-estimate/">Free estimate</a>
