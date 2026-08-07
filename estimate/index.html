@@ -773,7 +773,8 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
   flex-wrap:wrap}
 .ev-opt-hd h3{margin:0;font-size:1.2rem}
 .ev-price{margin:0;font:600 1.8rem/1 var(--serif);color:var(--ink)}
-.ev-inc{margin:1rem 0 0;padding-left:1.15em;color:var(--ink-2);font-size:.98rem}
+.ev-plus{margin:1rem 0 .3rem;font:600 .92rem var(--sans);color:var(--ink-3)}
+.ev-inc{margin:.5rem 0 0;padding-left:1.15em;color:var(--ink-2);font-size:.98rem}
 .ev-inc li{margin-bottom:.45em}
 .ev-take{margin-top:1.3rem;width:100%;justify-content:center}
 
@@ -1047,6 +1048,11 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
     $('ev-opts').innerHTML = opts.map(function(t, i){
       var pick = many && i === 1;
       var incs = (t.inc || []).filter(function(l){ return (l || '').trim(); });
+      // show only what this option adds &mdash; the upgrade should be obvious
+      var prev = i > 0 ? (opts[i-1].inc || []).filter(function(l){ return (l || '').trim(); }) : [];
+      var mine = incs.filter(function(l){ return prev.indexOf(l) === -1; });
+      var lead = (i > 0 && mine.length < incs.length)
+               ? '<p class="ev-plus">Everything in option ' + i + ', plus:</p>' : '';
       // the message writes itself, so saying yes is one tap and no typing
       var msg = 'Hi ' + 'Bramel' + ', it\u2019s ' + (d.cust || '')
               + (d.addr ? ' at ' + d.addr : '') + '. '
@@ -1058,8 +1064,9 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
         + (pick ? '<p class="ev-flag">Most people take this one</p>' : '')
         + '<div class="ev-opt-hd"><h3>' + esc(t.name) + '</h3>'
         + '<p class="ev-price">' + money(t.price) + '</p></div>'
-        + (incs.length ? '<ul class="ev-inc">'
-            + incs.map(function(l){ return '<li>' + esc(l.trim()) + '</li>'; }).join('')
+        + lead
+        + (mine.length ? '<ul class="ev-inc">'
+            + mine.map(function(l){ return '<li>' + esc(l.trim()) + '</li>'; }).join('')
             + '</ul>' : '')
         + '<a class="btn ' + (pick ? 'btn-primary' : 'btn-outline') + ' ev-take" '
         + 'href="sms:+15125463576?&body=' + encodeURIComponent(msg) + '" '
