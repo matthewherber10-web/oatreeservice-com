@@ -778,6 +778,14 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 .ev-inc li{margin-bottom:.45em}
 .ev-take{margin-top:1.3rem;width:100%;justify-content:center}
 
+.ev-pref{margin-top:1.8rem;padding:20px;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--card,#fff)}
+.ev-pref label{display:block;font:600 1rem var(--sans);margin-bottom:.6rem}
+.ev-pref input{width:100%;padding:15px;font-size:17px;border:1.5px solid var(--line);
+  border-radius:var(--r-sm);background:#fff;color:var(--ink);min-height:52px}
+.ev-pref input:focus{outline:2px solid var(--green-2);outline-offset:1px;
+  border-color:var(--green-2)}
+.ev-pref p{margin:.8rem 0 0;font-size:.92rem;color:var(--ink-3);line-height:1.55}
 .ev-terms{margin:0;padding-left:1.15em;color:var(--ink-2);font-size:1rem}
 .ev-terms li{margin-bottom:.7em;line-height:1.6}
 .ev-close{background:var(--ink);color:#fff;padding:clamp(2.6rem,6vw,4rem) 0;text-align:center}
@@ -800,6 +808,21 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 .ev-link code{display:block;padding:12px 14px;background:rgba(255,255,255,.1);
   border-radius:8px;color:#fff;font-size:.9rem;word-break:break-all;margin-bottom:.9rem}
 .ev-link .btn-row{margin:0}
+
+/* On a phone the send-it buttons wrapped to whatever width their label
+   happened to be, which looked like a form someone forgot to finish. Stack
+   them full width instead. */
+@media(max-width:640px){
+  .toolcard-body>.btn-row .btn,
+  .ev-link .btn-row .btn{width:100%}
+}
+
+/* Bramel's way in. Small on purpose &mdash; it is for one person, and a customer
+   who notices it should read it as staff-only, not as something for them. */
+.ftr-login{margin-left:14px;color:#8b9590;text-decoration:none;font-size:.86rem;
+  border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 12px;
+  white-space:nowrap;display:inline-block}
+.ftr-login:hover{color:#fff;border-color:rgba(255,255,255,.5)}
 
 /* his own rates panel &mdash; set once, collapsed the rest of the time */
 .ratecard{padding:0;margin-bottom:2rem}
@@ -956,6 +979,14 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
     <h2 class="ev-h" id="ev-opth">What it costs</h2>
     <div class="ev-opts" id="ev-opts"></div>
     <p class="ev-note" id="ev-valid"></p>
+
+    <div class="ev-pref">
+      <label for="ev-when-pref">When suits you?</label>
+      <input type="text" id="ev-when-pref" maxlength="90"
+             placeholder="Weekday mornings, after the 20th, whenever&hellip;">
+      <p>Goes with your answer so Bramel knows what you&rsquo;re working around.
+      He&rsquo;ll come back to confirm the day &mdash; nothing is booked until he does.</p>
+    </div>
   </div></section>
 
   <section class="ev-sec"><div class="wrap ev-wrap">
@@ -1060,6 +1091,8 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
                       + ' (' + money(t.price) + ').'
                       : 'I\u2019d like to go ahead with the ' + money(t.price) + ' quote.')
               + ' When could you do it?';
+      var pref = ($('ev-when-pref') && $('ev-when-pref').value || '').trim();
+      if (pref) msg += ' Best time for me: ' + pref + '.';
       return '<div class="ev-opt' + (pick ? ' is-pick' : '') + '">'
         + (pick ? '<p class="ev-flag">Most people take this one</p>' : '')
         + '<div class="ev-opt-hd"><h3>' + esc(t.name) + '</h3>'
@@ -1070,6 +1103,7 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
             + '</ul>' : '')
         + '<a class="btn ' + (pick ? 'btn-primary' : 'btn-outline') + ' ev-take" '
         + 'href="sms:+15125463576?&body=' + encodeURIComponent(msg) + '" '
+        + 'data-opt="' + i + '" data-msg="' + esc(msg) + '" '
         + 'data-cta="estimate-accept">' + (many ? 'I\u2019ll take this one' : 'Go ahead') + '</a>'
         + '</div>';
     }).join('') || '<p class="ev-note">Price to follow &mdash; give me a ring.</p>';
@@ -1101,6 +1135,36 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
     function closeLight(){ $('ev-light').hidden = true; document.body.style.overflow = ''; }
     $('ev-light').addEventListener('click', closeLight);
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLight(); });
+
+    // Tell Bramel the moment they tap. The button also opens a text, but
+    // plenty of people tap it and never hit send &mdash; without this he would
+    // never hear about it. keepalive so it survives the page handing over
+    // to the messaging app.
+    // They can type a time after the cards are drawn, so keep the message
+    // the button sends in step with the box.
+    var prefBox = $('ev-when-pref');
+    if (prefBox) prefBox.addEventListener('input', function(){
+      var extra = prefBox.value.trim() ? ' Best time for me: ' + prefBox.value.trim() + '.' : '';
+      document.querySelectorAll('.ev-take').forEach(function(a){
+        var base = a.dataset.msg || '';
+        a.href = 'sms:+15125463576?&body=' + encodeURIComponent(base + extra);
+      });
+    });
+
+    $('ev-opts').addEventListener('click', function(e){
+      var b = e.target.closest('.ev-take');
+      if (!b) return;
+      try {
+        fetch(API + '/accept', {
+          method: 'POST', keepalive: true,
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({id: id, option: +b.dataset.opt || 0,
+                                pref: (prefBox && prefBox.value || '').slice(0, 90)})
+        });
+      } catch (err) { /* never block them from saying yes */ }
+      if (window.gtag) gtag('event', 'estimate_accepted',
+        {estimate_id: id, option: +b.dataset.opt || 0});
+    });
 
     if (window.gtag) gtag('event', 'estimate_viewed', {estimate_id: id});
   }
@@ -1144,7 +1208,8 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
   </ul></div>
 </div>
 <div class="ftr-bot">
-  <span>&copy; 2026 Ozark of Austin Tree Service. Kyle, Texas.</span>
+  <span>&copy; 2026 Ozark of Austin Tree Service. Kyle, Texas.
+    <a class="ftr-login" href="https://ozark-estimates.matthewherber10.workers.dev/builder" rel="nofollow noopener">Log in</a></span>
   <span class="social">
     <a href="https://www.facebook.com/ozarkofaustin" target="_blank" rel="noopener" aria-label="Ozark of Austin on Facebook" title="Facebook">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
