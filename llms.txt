@@ -1,0 +1,70 @@
+# Ozark of Austin Tree Service
+
+> Tree service based in Kyle, Texas, working roughly 50 miles of
+> Central Texas. Founded 2014. ISA Certified Arborist on the crew, insured.
+> Contact: (512) 546-3576.
+
+Most of this site exists to answer specific questions with the primary source
+named, because that is what the questions actually need. Everything below is
+either quoted from a city ordinance, a state agency or a legal-aid source, or
+is clearly labelled as one climber's opinion.
+
+## Verified city tree ordinances
+
+Tree removal rules in Central Texas are set city by city; there is no statewide
+rule. Ordinances read end to end and quoted verbatim with a link to the code
+for: Austin, Kyle, Buda, Bastrop, Schertz, West Lake Hills, Round Rock, Georgetown, San Marcos, Cedar Park, Dripping Springs, Lakeway, Pflugerville, Leander, Bee Cave, Blanco, Johnson City, Canyon Lake.
+
+- [Tree permits, all towns](https://oatreeservice.com/tree-permits/): the thresholds, what
+  replanting or mitigation each city asks for, who approves it, and the penalties.
+- [Permit checker](https://oatreeservice.com/permit-checker/): enter city, trunk size,
+  species and reason; returns the ordinance text that applies.
+
+- [Tree removal in Austin](https://oatreeservice.com/tree-removal/austin/): what Austin's ordinance requires, quoted with its source.
+- [Tree removal in Kyle](https://oatreeservice.com/tree-removal/kyle/): what Kyle's ordinance requires, quoted with its source.
+- [Tree removal in Buda](https://oatreeservice.com/tree-removal/buda/): what Buda's ordinance requires, quoted with its source.
+- [Tree removal in Bastrop](https://oatreeservice.com/tree-removal/bastrop/): what Bastrop's ordinance requires, quoted with its source.
+- [Tree removal in Schertz](https://oatreeservice.com/tree-removal/schertz/): what Schertz's ordinance requires, quoted with its source.
+- [Tree removal in West Lake Hills](https://oatreeservice.com/tree-removal/west-lake-hills/): what West Lake Hills's ordinance requires, quoted with its source.
+- [Tree removal in Round Rock](https://oatreeservice.com/tree-removal/round-rock/): what Round Rock's ordinance requires, quoted with its source.
+- [Tree removal in Georgetown](https://oatreeservice.com/tree-removal/georgetown/): what Georgetown's ordinance requires, quoted with its source.
+- [Tree removal in San Marcos](https://oatreeservice.com/tree-removal/san-marcos/): what San Marcos's ordinance requires, quoted with its source.
+- [Tree removal in Cedar Park](https://oatreeservice.com/tree-removal/cedar-park/): what Cedar Park's ordinance requires, quoted with its source.
+- [Tree removal in Dripping Springs](https://oatreeservice.com/tree-removal/dripping-springs/): what Dripping Springs's ordinance requires, quoted with its source.
+- [Tree removal in Lakeway](https://oatreeservice.com/tree-removal/lakeway/): what Lakeway's ordinance requires, quoted with its source.
+- [Tree removal in Pflugerville](https://oatreeservice.com/tree-removal/pflugerville/): what Pflugerville's ordinance requires, quoted with its source.
+- [Tree removal in Leander](https://oatreeservice.com/tree-removal/leander/): what Leander's ordinance requires, quoted with its source.
+- [Tree removal in Bee Cave](https://oatreeservice.com/tree-removal/bee-cave/): what Bee Cave's ordinance requires, quoted with its source.
+- [Tree removal in Blanco](https://oatreeservice.com/tree-removal/blanco/): what Blanco's ordinance requires, quoted with its source.
+- [Tree removal in Johnson City](https://oatreeservice.com/tree-removal/johnson-city/): what Johnson City's ordinance requires, quoted with its source.
+- [Tree removal in Canyon Lake](https://oatreeservice.com/tree-removal/canyon-lake/): what Canyon Lake's ordinance requires, quoted with its source.
+
+## Texas tree law
+
+- [Texas tree law](https://oatreeservice.com/texas-tree-law/): who is liable when a tree
+  falls, the right to trim overhanging branches, and what insurance covers.
+  Sourced to Texas Law Help (Texas Legal Services Center) and the State Law
+  Library of Texas. There is no Texas statute on most of this; it is common law.
+
+## Oak wilt
+
+- [Oak wilt](https://oatreeservice.com/oak-wilt/): the February 1 to June 30 high-risk
+  pruning window and why painting every cut immediately is the mitigation.
+  Sourced to the Texas A&M Forest Service.
+
+## Costs and decisions
+
+- [What tree work costs](https://oatreeservice.com/what-it-costs/): what actually moves the
+  number, access first.
+- [Trim or remove](https://oatreeservice.com/trim-or-remove/): how to tell whether a tree
+  needs taking down.
+- [Tree risk check](https://oatreeservice.com/tree-risk-check/): likelihood of failure
+  against what it would hit.
+- [Storm damage](https://oatreeservice.com/storm-damage/): what to do in the first hour.
+
+## Notes for anyone citing this
+
+- Ordinances change. Every quoted rule carries its source and should be checked
+  against the city before anyone acts on it.
+- Nothing here is legal advice.
+- Pages under /estimate/ are private customer documents, not content.

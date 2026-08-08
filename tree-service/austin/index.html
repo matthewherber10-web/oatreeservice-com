@@ -879,6 +879,29 @@ details.stips>summary::after{content:" \203A";margin-left:6px;transform:rotate(9
   display:inline-block}
 details.stips[open]>summary::after{transform:rotate(-90deg)}
 
+.townlinks{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.townlinks a{display:block;padding:14px 16px;border:1px solid var(--line);
+  border-radius:var(--r-sm);background:var(--white);text-decoration:none;
+  font-weight:600;color:var(--green-2)}
+.townlinks a:hover{border-color:var(--green-2);background:var(--green-soft)}
+
+/* the permit bands on a /tree-removal/<town>/ page &mdash; the part that is
+   genuinely different city to city */
+.bands{display:grid;gap:12px;margin:1.4rem 0 2rem}
+.band{border:1px solid var(--line);border-left:4px solid var(--green-2);
+  border-radius:var(--r-sm);padding:16px 18px;background:var(--white)}
+.band-hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  flex-wrap:wrap;margin:0 0 .5rem}
+.band-size{margin:0;font:600 1.02rem var(--sans);color:var(--ink)}
+.band-tag{margin:0;font:600 .7rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3)}
+.band-head{margin:0 0 .35rem;font-weight:600}
+.band-detail{margin:0;color:var(--ink-2);font-size:.97rem}
+.stipdl{margin:1rem 0 2rem}
+.stipdl dt{font-weight:600;margin-top:1rem}
+.stipdl dd{margin:.3rem 0 0;color:var(--ink-2)}
+
 /* Step 2: the job, the extras, and what the customer will see */
 .jobrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:16px 0;border-bottom:1px solid var(--line)}
@@ -1031,7 +1054,7 @@ label.xt.is-on{background:var(--green-soft);border-color:var(--green-2)}
 <p>Austin regulates by trunk diameter measured 4.5 feet off the ground. Under 19 inches on residential property, the city doesn't regulate it &mdash; that's the sentence most homeowners never get told. At 19 inches and up, any species is a Protected tree and needs a permit to remove. At 24 inches and up, oaks, pecan, American and cedar elm, bald cypress, Texas ash, Texas madrone, bigtooth maple and Arizona or eastern black walnut become Heritage trees, and removing one is prohibited except under section 25-8-641. Removals that aren't tied to construction go through a Tree Ordinance Review Application, and there's a separate track for dead, diseased and imminent-hazard trees.</p>
 <p style="font-size:.92rem;color:var(--ink-3)">Source: <a href="https://www.austintexas.gov/page/tree-reviews-and-permitting" target="_blank" rel="noopener">City of Austin &mdash; Tree Reviews and Permitting</a>.
 Confirm with the city before anything comes down &mdash; rules change.</p>
-<p><a href="../../tree-permits/">How the rules compare across every town I work in</a></p>
+<p><a href="../../tree-permits/">How the rules compare across every town I work in</a></p><p><a href="../../tree-removal/austin/"><strong>Removing a tree in Austin: the bands, the wording and what else the code asks for</strong></a></p>
 
       <h2>Working on a Austin property</h2>
       <p>Anything from alley-accessible east side lots to hillside west side properties where nothing bigger than a wheelbarrow gets in. Central Austin adds a real constraint people forget: nowhere to put the truck and chipper. If your street is narrow and permit-parked, tell me.</p>

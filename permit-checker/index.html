@@ -879,6 +879,29 @@ details.stips>summary::after{content:" \203A";margin-left:6px;transform:rotate(9
   display:inline-block}
 details.stips[open]>summary::after{transform:rotate(-90deg)}
 
+.townlinks{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.townlinks a{display:block;padding:14px 16px;border:1px solid var(--line);
+  border-radius:var(--r-sm);background:var(--white);text-decoration:none;
+  font-weight:600;color:var(--green-2)}
+.townlinks a:hover{border-color:var(--green-2);background:var(--green-soft)}
+
+/* the permit bands on a /tree-removal/<town>/ page &mdash; the part that is
+   genuinely different city to city */
+.bands{display:grid;gap:12px;margin:1.4rem 0 2rem}
+.band{border:1px solid var(--line);border-left:4px solid var(--green-2);
+  border-radius:var(--r-sm);padding:16px 18px;background:var(--white)}
+.band-hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  flex-wrap:wrap;margin:0 0 .5rem}
+.band-size{margin:0;font:600 1.02rem var(--sans);color:var(--ink)}
+.band-tag{margin:0;font:600 .7rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3)}
+.band-head{margin:0 0 .35rem;font-weight:600}
+.band-detail{margin:0;color:var(--ink-2);font-size:.97rem}
+.stipdl{margin:1rem 0 2rem}
+.stipdl dt{font-weight:600;margin-top:1rem}
+.stipdl dd{margin:.3rem 0 0;color:var(--ink-2)}
+
 /* Step 2: the job, the extras, and what the customer will see */
 .jobrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:16px 0;border-bottom:1px solid var(--line)}
@@ -1014,7 +1037,7 @@ label.xt.is-on{background:var(--green-soft);border-color:var(--green-2)}
     <label for="pc-city">1. Which city is the tree in?
       <span class="hint">The jurisdiction, not your mailing address. Outside city
       limits? Pick the last option.</span></label>
-    <select id="pc-city"><option value="">Choose a city…</option><option value="austin">Austin</option><option value="kyle">Kyle</option><option value="buda">Buda</option><option value="bastrop">Bastrop</option><option value="schertz">Schertz</option><option value="west-lake-hills">West Lake Hills</option><option value="round-rock">Round Rock</option><option value="georgetown">Georgetown</option><option value="san-marcos">San Marcos</option><option value="cedar-park">Cedar Park</option><option value="dripping-springs">Dripping Springs</option><option value="lakeway">Lakeway</option><option value="pflugerville">Pflugerville</option><option value="leander">Leander</option><option value="bee-cave">Bee Cave</option><option value="blanco">Blanco</option><option value="johnson-city">Johnson City</option><option value="canyon-lake">Canyon Lake</option><optgroup label="I have not read these codes yet"><option value="unverified">Bear Creek</option><option value="unverified">Bulverde</option><option value="unverified">Cedar Creek</option><option value="unverified">Cibolo</option><option value="unverified">Creedmoor</option><option value="unverified">Dale</option><option value="unverified">Del Valle</option><option value="unverified">Driftwood</option><option value="unverified">Elgin</option><option value="unverified">Garden Ridge</option><option value="unverified">Hutto</option><option value="unverified">Lockhart</option><option value="unverified">Luling</option><option value="unverified">Manchaca</option><option value="unverified">Manor</option><option value="unverified">Marion</option><option value="unverified">Martindale</option><option value="unverified">Maxwell</option><option value="unverified">Mountain City</option><option value="unverified">Mustang Ridge</option><option value="unverified">New Braunfels</option><option value="unverified">Niederwald</option><option value="unverified">Rollingwood</option><option value="unverified">Seguin</option><option value="unverified">Smithville</option><option value="unverified">Spring Branch</option><option value="unverified">Staples</option><option value="unverified">Sunset Valley</option><option value="unverified">Uhland</option><option value="unverified">Wimberley</option><option value="unverified">Woodcreek</option><option value="unverified">Somewhere else / unincorporated county</option></optgroup></select>
+    <select id="pc-city"><option value="" selected>Choose a city…</option><option value="austin">Austin</option><option value="kyle">Kyle</option><option value="buda">Buda</option><option value="bastrop">Bastrop</option><option value="schertz">Schertz</option><option value="west-lake-hills">West Lake Hills</option><option value="round-rock">Round Rock</option><option value="georgetown">Georgetown</option><option value="san-marcos">San Marcos</option><option value="cedar-park">Cedar Park</option><option value="dripping-springs">Dripping Springs</option><option value="lakeway">Lakeway</option><option value="pflugerville">Pflugerville</option><option value="leander">Leander</option><option value="bee-cave">Bee Cave</option><option value="blanco">Blanco</option><option value="johnson-city">Johnson City</option><option value="canyon-lake">Canyon Lake</option><optgroup label="I have not read these codes yet"><option value="unverified">Bear Creek</option><option value="unverified">Bulverde</option><option value="unverified">Cedar Creek</option><option value="unverified">Cibolo</option><option value="unverified">Creedmoor</option><option value="unverified">Dale</option><option value="unverified">Del Valle</option><option value="unverified">Driftwood</option><option value="unverified">Elgin</option><option value="unverified">Garden Ridge</option><option value="unverified">Hutto</option><option value="unverified">Lockhart</option><option value="unverified">Luling</option><option value="unverified">Manchaca</option><option value="unverified">Manor</option><option value="unverified">Marion</option><option value="unverified">Martindale</option><option value="unverified">Maxwell</option><option value="unverified">Mountain City</option><option value="unverified">Mustang Ridge</option><option value="unverified">New Braunfels</option><option value="unverified">Niederwald</option><option value="unverified">Rollingwood</option><option value="unverified">Seguin</option><option value="unverified">Smithville</option><option value="unverified">Spring Branch</option><option value="unverified">Staples</option><option value="unverified">Sunset Valley</option><option value="unverified">Uhland</option><option value="unverified">Wimberley</option><option value="unverified">Woodcreek</option><option value="unverified">Somewhere else / unincorporated county</option></optgroup></select>
   </div>
 
   <div class="field">

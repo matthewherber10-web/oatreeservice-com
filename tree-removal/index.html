@@ -879,6 +879,29 @@ details.stips>summary::after{content:" \203A";margin-left:6px;transform:rotate(9
   display:inline-block}
 details.stips[open]>summary::after{transform:rotate(-90deg)}
 
+.townlinks{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.townlinks a{display:block;padding:14px 16px;border:1px solid var(--line);
+  border-radius:var(--r-sm);background:var(--white);text-decoration:none;
+  font-weight:600;color:var(--green-2)}
+.townlinks a:hover{border-color:var(--green-2);background:var(--green-soft)}
+
+/* the permit bands on a /tree-removal/<town>/ page &mdash; the part that is
+   genuinely different city to city */
+.bands{display:grid;gap:12px;margin:1.4rem 0 2rem}
+.band{border:1px solid var(--line);border-left:4px solid var(--green-2);
+  border-radius:var(--r-sm);padding:16px 18px;background:var(--white)}
+.band-hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  flex-wrap:wrap;margin:0 0 .5rem}
+.band-size{margin:0;font:600 1.02rem var(--sans);color:var(--ink)}
+.band-tag{margin:0;font:600 .7rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3)}
+.band-head{margin:0 0 .35rem;font-weight:600}
+.band-detail{margin:0;color:var(--ink-2);font-size:.97rem}
+.stipdl{margin:1rem 0 2rem}
+.stipdl dt{font-weight:600;margin-top:1rem}
+.stipdl dd{margin:.3rem 0 0;color:var(--ink-2)}
+
 /* Step 2: the job, the extras, and what the customer will see */
 .jobrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:16px 0;border-bottom:1px solid var(--line)}
@@ -1166,6 +1189,17 @@ label.xt.is-on{background:var(--green-soft);border-color:var(--green-2)}
 })();
 </script>
 </div>
+</div></section>
+
+<section class="tight"><div class="wrap reading">
+  <div class="prose">
+    <h2>What your city actually allows</h2>
+    <p>Removal is the one job where the rules change every time you cross a city
+    line, so each of these has its own page &mdash; the size bands, the ordinance
+    quoted in its own words, and what else the code asks for. These are the
+    18 I have read end to end.</p>
+  </div>
+  <ul class="townlinks"><li><a href="../tree-removal/austin/">Tree removal in Austin</a></li><li><a href="../tree-removal/kyle/">Tree removal in Kyle</a></li><li><a href="../tree-removal/buda/">Tree removal in Buda</a></li><li><a href="../tree-removal/bastrop/">Tree removal in Bastrop</a></li><li><a href="../tree-removal/schertz/">Tree removal in Schertz</a></li><li><a href="../tree-removal/west-lake-hills/">Tree removal in West Lake Hills</a></li><li><a href="../tree-removal/round-rock/">Tree removal in Round Rock</a></li><li><a href="../tree-removal/georgetown/">Tree removal in Georgetown</a></li><li><a href="../tree-removal/san-marcos/">Tree removal in San Marcos</a></li><li><a href="../tree-removal/cedar-park/">Tree removal in Cedar Park</a></li><li><a href="../tree-removal/dripping-springs/">Tree removal in Dripping Springs</a></li><li><a href="../tree-removal/lakeway/">Tree removal in Lakeway</a></li><li><a href="../tree-removal/pflugerville/">Tree removal in Pflugerville</a></li><li><a href="../tree-removal/leander/">Tree removal in Leander</a></li><li><a href="../tree-removal/bee-cave/">Tree removal in Bee Cave</a></li><li><a href="../tree-removal/blanco/">Tree removal in Blanco</a></li><li><a href="../tree-removal/johnson-city/">Tree removal in Johnson City</a></li><li><a href="../tree-removal/canyon-lake/">Tree removal in Canyon Lake</a></li></ul>
 </div></section>
 
 <section class="bg-2"><div class="wrap">
