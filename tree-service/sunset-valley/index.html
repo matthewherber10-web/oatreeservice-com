@@ -22,7 +22,8 @@
 <meta name="theme-color" content="#22282a">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../img/favicon-180.png">
 <style>
 /* ------------------------------------------------------------------
    BRAND: "The Climber"
@@ -100,6 +101,7 @@ section.tight{padding:clamp(34px,4.5vw,54px) 0}
 .brand{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;
   color:var(--ink);flex:0 0 auto}
 .brand svg{flex:0 0 auto}
+.brand-mark{flex:0 0 auto;width:41px;height:44px;object-fit:contain}
 .brand-txt{display:flex;flex-direction:column;font:600 1.06rem/1.1 var(--serif);
   letter-spacing:-.01em}
 .brand-sub{font:600 .62rem/1 var(--sans);letter-spacing:.1em;
@@ -824,14 +826,11 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 
 /* His actual logo. It lives where there is room for the detail to read &mdash;    the footer and the estimate documents. The compact mark stays in the header,
    where this line art would turn to mush at 44px. */
-.ftr-logo{display:flex;justify-content:center;padding:8px 0 26px}
-.ftr-logo img{width:150px;height:auto;opacity:.92}
-@media(min-width:700px){.ftr-logo img{width:180px}}
 
 /* Bramel's way in. Small on purpose &mdash; it is for one person, and a customer
    who notices it should read it as staff-only, not as something for them. */
 .nav-login{color:var(--ink-3)!important;border:1px solid var(--line);border-radius:999px;
-  padding:6px 13px;font-size:.85rem!important}
+  padding:7px 14px;font-size:.85rem!important;line-height:1.1!important;margin-left:5px}
 .nav-login:hover{color:var(--green-2)!important;border-color:var(--green-2)}
 @media(max-width:1040px){
   .nav.open .nav-login{display:inline-block;align-self:flex-start;margin-top:14px;
@@ -872,6 +871,41 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
   border-radius:var(--r-sm);background:var(--white);color:var(--ink);min-height:50px}
 .rate input:focus{outline:2px solid var(--green-2);outline-offset:1px;
   border-color:var(--green-2)}
+
+/* Step 2: the job, the extras, and what the customer will see */
+.jobrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:16px 0;border-bottom:1px solid var(--line)}
+.jobrow-t{font:600 1.06rem var(--sans)}
+.xt-price{display:inline-flex;align-items:center;gap:4px;flex:0 0 auto}
+.xt-cur{color:var(--ink-3);font-weight:600}
+.xt-price input{width:104px;padding:11px 12px;font-size:17px;text-align:right;
+  border:1.5px solid var(--line);border-radius:var(--r-sm);background:#fff;
+  color:var(--ink);min-height:48px}
+.xt-price input:focus{outline:2px solid var(--green-2);outline-offset:1px;
+  border-color:var(--green-2)}
+
+.xt-head{margin:1.6rem 0 .7rem;font:600 .72rem/1 var(--sans);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+.xt-list{display:flex;flex-direction:column;gap:8px}
+label.xt{display:flex;align-items:center;gap:12px;padding:12px 14px;
+  border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;cursor:pointer}
+label.xt.is-on{background:var(--green-soft);border-color:var(--green-2)}
+.xt input.xt-on{width:22px;height:22px;flex:0 0 auto;accent-color:var(--green-2)}
+.xt-label{flex:1 1 auto;font-size:.98rem;line-height:1.35}
+
+/* the customer's side, while he is still building it */
+.preview{margin-top:1.8rem;padding:20px;border-radius:var(--r);background:var(--ink)}
+.preview-k{margin:0 0 .9rem;font:600 .7rem/1 var(--sans);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber)}
+.preview-opt{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.preview-opt:last-child{border-bottom:0}
+.preview-name{color:#dfe5e2;font-size:.98rem}
+.preview-name em{display:block;font-style:normal;font-size:.8rem;color:var(--amber);
+  margin-top:3px}
+.preview-price{color:#fff;font:600 1.15rem var(--serif);white-space:nowrap}
+.preview-opt.is-pick .preview-price{color:#fff;font-size:1.3rem}
+.preview-note{margin:.9rem 0 0;font-size:.86rem;color:#9aa8a2}
 
 /* good/better/best option cards */
 .tiers{display:grid;gap:16px}
@@ -938,7 +972,8 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://oatreeservice.com/"},{"@type":"ListItem","position":2,"name":"Service area","item":"https://oatreeservice.com/tree-service/"},{"@type":"ListItem","position":3,"name":"Tree Service in Sunset Valley, TX","item":"https://oatreeservice.com/tree-service/sunset-valley/"}]}</script></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="hdr"><div class="wrap hdr-in">
-  <a class="brand" href="../../index.html"><svg width="38" height="38" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M5 34C5 13 39 13 39 34" stroke="#4a6b4f" stroke-width="3.4" stroke-linecap="round"/><path d="M11.5 34C11.5 21 32.5 21 32.5 34" stroke="#4a6b4f" stroke-width="2.3" stroke-linecap="round" opacity=".5"/><path d="M22 20.5V39" stroke="#22282a" stroke-width="3.4" stroke-linecap="round"/><circle cx="22" cy="11.5" r="5.2" stroke="#ff6a1f" stroke-width="2.6"/><path d="M22 6.3v3.1" stroke="#ff6a1f" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-txt">Ozark of Austin
+  <a class="brand" href="../../index.html"><img class="brand-mark" src="../../img/ozark-mark-88.png"
+      width="41" height="44" alt="" decoding="async"><span class="brand-txt">Ozark of Austin
     <span class="brand-sub">Tree Service &middot; Kyle, TX</span></span></a>
   <button class="burger" aria-expanded="false" aria-controls="nav" onclick="var n=document.getElementById('nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu</button>
   <nav class="nav" id="nav"><a href="../../services/">Services</a><a href="../../tree-permits/">Permits</a><a href="../../oak-wilt/">Oak Wilt</a><a href="../../what-it-costs/">Prices</a><a href="../../service-area/" aria-current=page>Service Area</a><a href="../../about/">About</a><a class="nav-login" href="https://ozark-estimates.matthewherber10.workers.dev/builder" rel="nofollow noopener">Log in</a></nav>
@@ -1042,7 +1077,8 @@ Confirm with the city before anything comes down &mdash; rules change.</p>
 <footer class="ftr"><div class="wrap">
 <div class="grid g4">
   <div>
-    <a class="brand" href="../../index.html"><svg width="38" height="38" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M5 34C5 13 39 13 39 34" stroke="#8fae94" stroke-width="3.4" stroke-linecap="round"/><path d="M11.5 34C11.5 21 32.5 21 32.5 34" stroke="#8fae94" stroke-width="2.3" stroke-linecap="round" opacity=".5"/><path d="M22 20.5V39" stroke="#e6e9e7" stroke-width="3.4" stroke-linecap="round"/><circle cx="22" cy="11.5" r="5.2" stroke="#ff6a1f" stroke-width="2.6"/><path d="M22 6.3v3.1" stroke="#ff6a1f" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-txt">Ozark of Austin
+    <a class="brand" href="../../index.html"><img class="brand-mark" src="../../img/ozark-mark-white-88.png"
+        width="41" height="44" alt="" loading="lazy" decoding="async"><span class="brand-txt">Ozark of Austin
       <span class="brand-sub">Tree Service &middot; Kyle, TX</span></span></a>
     <p style="color:#a9b3ae;margin-bottom:.7em">Tree work out of Kyle, Texas.
     I'm on every job I sell.</p>
@@ -1074,10 +1110,6 @@ Confirm with the city before anything comes down &mdash; rules change.</p>
     <li><a href="../../tree-service/austin/neighborhoods/">Austin by neighborhood</a></li>
     <li><a href="../../tree-service/dripping-springs/">Dripping Springs</a></li>
   </ul></div>
-</div>
-<div class="ftr-logo">
-  <img src="../../img/ozark-logo-white-480.png" width="240" height="260"
-       alt="Ozark of Austin Tree Service" loading="lazy" decoding="async">
 </div>
 <div class="ftr-bot">
   <span>&copy; 2026 Ozark of Austin Tree Service. Kyle, Texas.
