@@ -872,6 +872,13 @@ label.chk{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;margin-
 .rate input:focus{outline:2px solid var(--green-2);outline-offset:1px;
   border-color:var(--green-2)}
 
+details.stips>summary{cursor:pointer;list-style:none;font:600 .88rem var(--sans);
+  color:var(--green-2);padding:8px 0;min-height:44px;display:flex;align-items:center}
+details.stips>summary::-webkit-details-marker{display:none}
+details.stips>summary::after{content:" \203A";margin-left:6px;transform:rotate(90deg);
+  display:inline-block}
+details.stips[open]>summary::after{transform:rotate(-90deg)}
+
 /* Step 2: the job, the extras, and what the customer will see */
 .jobrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:16px 0;border-bottom:1px solid var(--line)}
