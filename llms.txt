@@ -13,7 +13,7 @@ is clearly labelled as one climber's opinion.
 
 Tree removal rules in Central Texas are set city by city; there is no statewide
 rule. Ordinances read end to end and quoted verbatim with a link to the code
-for: Austin, Kyle, Buda, Bastrop, Schertz, West Lake Hills, Round Rock, Georgetown, San Marcos, Cedar Park, Dripping Springs, Lakeway, Pflugerville, Leander, Bee Cave, Blanco, Johnson City, Canyon Lake.
+for: Austin, Kyle, Buda, Bastrop, Schertz, West Lake Hills, Round Rock, Georgetown, San Marcos, Cedar Park, Dripping Springs, Lakeway, Pflugerville, Leander, Bee Cave, Blanco, Johnson City, Canyon Lake, Manchaca, Del Valle, Driftwood, Cedar Creek, Maxwell.
 
 - [Tree permits, all towns](https://oatreeservice.com/tree-permits/): the thresholds, what
   replanting or mitigation each city asks for, who approves it, and the penalties.
@@ -38,6 +38,11 @@ for: Austin, Kyle, Buda, Bastrop, Schertz, West Lake Hills, Round Rock, Georgeto
 - [Tree removal in Blanco](https://oatreeservice.com/tree-removal/blanco/): what Blanco's ordinance requires, quoted with its source.
 - [Tree removal in Johnson City](https://oatreeservice.com/tree-removal/johnson-city/): what Johnson City's ordinance requires, quoted with its source.
 - [Tree removal in Canyon Lake](https://oatreeservice.com/tree-removal/canyon-lake/): what Canyon Lake's ordinance requires, quoted with its source.
+- [Tree removal in Manchaca](https://oatreeservice.com/tree-removal/manchaca/): what Manchaca's ordinance requires, quoted with its source.
+- [Tree removal in Del Valle](https://oatreeservice.com/tree-removal/del-valle/): what Del Valle's ordinance requires, quoted with its source.
+- [Tree removal in Driftwood](https://oatreeservice.com/tree-removal/driftwood/): what Driftwood's ordinance requires, quoted with its source.
+- [Tree removal in Cedar Creek](https://oatreeservice.com/tree-removal/cedar-creek/): what Cedar Creek's ordinance requires, quoted with its source.
+- [Tree removal in Maxwell](https://oatreeservice.com/tree-removal/maxwell/): what Maxwell's ordinance requires, quoted with its source.
 
 ## Texas tree law
 
