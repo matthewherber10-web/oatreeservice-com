@@ -13,7 +13,7 @@ is clearly labelled as one climber's opinion.
 
 Tree removal rules in Central Texas are set city by city; there is no statewide
 rule. Ordinances read end to end and quoted verbatim with a link to the code
-for: Austin, Kyle, Buda, Bastrop, Schertz, West Lake Hills, Round Rock, Georgetown, San Marcos, Cedar Park, Dripping Springs, Lakeway, Pflugerville, Leander, Bee Cave, Blanco, Johnson City, Canyon Lake, Manchaca, Del Valle, Driftwood, Cedar Creek, Maxwell, Dale, Sunset Valley, Garden Ridge, New Braunfels, Seguin, Bulverde, Hutto, Cibolo, Bear Creek, Staples, Spring Branch, Mustang Ridge, Niederwald.
+for: Austin, Kyle, Buda, Bastrop, Schertz, West Lake Hills, Round Rock, Georgetown, San Marcos, Cedar Park, Dripping Springs, Lakeway, Pflugerville, Leander, Bee Cave, Blanco, Johnson City, Canyon Lake, Manchaca, Del Valle, Driftwood, Cedar Creek, Maxwell, Dale, Sunset Valley, Garden Ridge, New Braunfels, Seguin, Bulverde, Hutto, Cibolo, Bear Creek, Staples, Spring Branch, Mustang Ridge, Niederwald, Woodcreek.
 
 - [Tree permits, all towns](https://oatreeservice.com/tree-permits/): the thresholds, what
   replanting or mitigation each city asks for, who approves it, and the penalties.
@@ -56,6 +56,7 @@ for: Austin, Kyle, Buda, Bastrop, Schertz, West Lake Hills, Round Rock, Georgeto
 - [Tree removal in Spring Branch](https://oatreeservice.com/tree-removal/spring-branch/): what Spring Branch's ordinance requires, quoted with its source.
 - [Tree removal in Mustang Ridge](https://oatreeservice.com/tree-removal/mustang-ridge/): what Mustang Ridge's ordinance requires, quoted with its source.
 - [Tree removal in Niederwald](https://oatreeservice.com/tree-removal/niederwald/): what Niederwald's ordinance requires, quoted with its source.
+- [Tree removal in Woodcreek](https://oatreeservice.com/tree-removal/woodcreek/): what Woodcreek's ordinance requires, quoted with its source.
 
 ## Texas tree law
 
